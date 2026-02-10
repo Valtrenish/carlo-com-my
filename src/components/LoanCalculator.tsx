@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import heroCar from "@/assets/hero-car.webp";
 
 const LoanCalculator = () => {
   const [carPrice, setCarPrice] = useState(150000);
   const [downPayment, setDownPayment] = useState(15000);
-  const [interestRate] = useState(3.5);
+  const [interestRate, setInterestRate] = useState(3.5);
   const [loanPeriod, setLoanPeriod] = useState(9);
 
   const calculateMonthlyPayment = useCallback(() => {
@@ -40,21 +41,7 @@ const LoanCalculator = () => {
               Easy Car Loan Calculator
             </p>
             <div className="relative">
-              <div className="bg-secondary/20 rounded-2xl p-6 backdrop-blur-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-secondary-foreground/20 flex items-center justify-center">
-                    <span className="text-lg font-bold">
-                      <span className="text-secondary-foreground">Car</span>
-                      <span className="text-primary-foreground">lo</span>
-                    </span>
-                  </div>
-                </div>
-                <div className="w-full h-48 md:h-64 bg-gradient-to-r from-secondary/30 to-primary/30 rounded-xl flex items-center justify-center">
-                  <svg className="w-32 h-32 text-secondary-foreground/50" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                  </svg>
-                </div>
-              </div>
+              <img src={heroCar} alt="Premium car available for loan" className="w-full max-w-lg mx-auto drop-shadow-2xl" />
             </div>
           </div>
 
@@ -91,14 +78,18 @@ const LoanCalculator = () => {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div>
-                <Label className="text-sm text-muted-foreground mb-2 block">
-                  Interest Rate*
+                <Label htmlFor="interestRate" className="text-sm text-muted-foreground mb-2 block">
+                  Interest Rate (%)*
                 </Label>
                 <Input
-                  type="text"
-                  value={`${interestRate}%`}
-                  disabled
-                  className="border-input bg-muted"
+                  id="interestRate"
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="20"
+                  value={interestRate}
+                  onChange={(e) => setInterestRate(Number(e.target.value))}
+                  className="border-input"
                 />
               </div>
               <div>
