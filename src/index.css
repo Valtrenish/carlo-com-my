@@ -42,7 +42,7 @@
     --carlo-gray: 220 10% 50%;
     --carlo-light-gray: 220 14% 96%;
     
-    --whatsapp: 142 70% 45%;
+    --whatsapp: 142 70% 41%;
     --whatsapp-foreground: 0 0% 100%;
 
     --sidebar-background: 0 0% 98%;
@@ -94,7 +94,7 @@
 
 @layer components {
   .gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--carlo-blue)) 0%, hsl(var(--carlo-orange)) 100%);
+    background: linear-gradient(180deg, hsl(207 90% 54%) 0%, hsl(207 70% 40%) 50%, hsl(220 20% 20%) 100%);
   }
   
   .container-carlo {
