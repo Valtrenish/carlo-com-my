@@ -124,9 +124,7 @@ const LoanCalculator = () => {
                 variant="outline"
                 className="flex-1 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
                 onClick={() => {
-                  setCarPrice(150000);
-                  setDownPayment(15000);
-                  setLoanPeriod(9);
+                  // Trigger recalculation with current values (already reactive)
                 }}
               >
                 Calculate Payment
