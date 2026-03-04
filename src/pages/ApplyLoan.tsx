@@ -252,51 +252,25 @@ const ApplyLoan = () => {
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Choose & Customize Your Car
             </h1>
-            <MandatoryNotice />
+            <p className="text-center text-muted-foreground mb-6">
+              Tell us about your choice and if you want to make it unique
+            </p>
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">Car Condition *</Label>
-                <RadioGroup className="mt-2 flex gap-4">
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="new" id="car-new" />
-                    <Label htmlFor="car-new" className="text-sm">New</Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="used" id="car-used" />
-                    <Label htmlFor="car-used" className="text-sm">Recond / Used</Label>
-                  </div>
-                </RadioGroup>
+                <Label className="text-sm font-medium text-foreground">Downpayment (RM) *</Label>
+                <Input className="mt-1" placeholder="Enter Amount" type="number" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Car Brand *</Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="">Select brand</option>
-                  <option value="perodua">Perodua</option>
-                  <option value="proton">Proton</option>
-                  <option value="toyota">Toyota</option>
-                  <option value="honda">Honda</option>
-                  <option value="nissan">Nissan</option>
-                  <option value="mercedes">Mercedes-Benz</option>
-                  <option value="bmw">BMW</option>
-                  <option value="others">Others</option>
-                </select>
+                <Label className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
+                <Input className="mt-1" placeholder="Enter Amount" type="number" />
               </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Car Model *</Label>
-                <Input className="mt-1" placeholder="e.g. Myvi, City, Vios" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Variant</Label>
-                <Input className="mt-1" placeholder="e.g. 1.5L AV" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Year of Manufacture *</Label>
-                <Input className="mt-1" type="number" placeholder="e.g. 2024" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Estimated Car Price (RM) *</Label>
-                <Input className="mt-1" type="number" placeholder="e.g. 75000" />
-              </div>
+              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
+                Update Amount
+              </Button>
+            </div>
+            <div className="flex items-center gap-2 text-whatsapp mt-6">
+              <Shield className="h-5 w-5" />
+              <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
           </>
