@@ -7,7 +7,7 @@ import { Shield, Upload, Camera, FileText, CreditCard, AlertCircle } from "lucid
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const TOTAL_STEPS = 14;
+const TOTAL_STEPS = 15;
 
 const STEP_TITLES = [
   "Read This, It's Important",
@@ -18,6 +18,7 @@ const STEP_TITLES = [
   "Send Us Your Location",
   "What You Do For Work",
   "Time For A Selfie",
+  "Selfie Verification",
   "Useful References",
   "NRIC",
   "Driving License",
@@ -467,8 +468,43 @@ const ApplyLoan = () => {
           </>
         );
 
-      // Step 8: Useful References
+      // Step 8: Selfie Verification
       case 8:
+        return (
+          <>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+              Selfie Verification
+            </h1>
+            <div className="flex flex-col items-center justify-center py-6">
+              <div className="w-40 h-40 rounded-2xl bg-muted/50 border border-border flex items-center justify-center mb-6 relative">
+                <Camera className="h-16 w-16 text-carlo-orange" />
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-whatsapp flex items-center justify-center">
+                  <svg className="w-5 h-5 text-whatsapp-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors mb-6">
+              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">
+                Drag and Drop <span className="text-muted-foreground">(or)</span>{" "}
+                <span className="text-secondary font-medium underline cursor-pointer">Choose Files</span>
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">Supported Files: PNG & JPG. File Size: &lt;1 MB</p>
+            </div>
+
+            <div className="flex items-center gap-2 text-whatsapp mb-2">
+              <Shield className="h-5 w-5" />
+              <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
+            </div>
+            <StepButtons onBack={goBack} onNext={goNext} />
+          </>
+        );
+
+      // Step 9: Useful References
+      case 9:
         return (
           <>
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
@@ -505,8 +541,8 @@ const ApplyLoan = () => {
           </>
         );
 
-      // Step 9: NRIC
-      case 9:
+      // Step 10: NRIC
+      case 10:
         return (
           <DocumentUploadStep
             title="NRIC"
@@ -517,8 +553,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 10: Driving License
-      case 10:
+      // Step 11: Driving License
+      case 11:
         return (
           <DocumentUploadStep
             title="Driving License"
@@ -529,8 +565,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 11: Latest Payslip
-      case 11:
+      // Step 12: Latest Payslip
+      case 12:
         return (
           <DocumentUploadStep
             title="Latest Payslip"
@@ -541,8 +577,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 12: Latest Bank Statement
-      case 12:
+      // Step 13: Latest Bank Statement
+      case 13:
         return (
           <DocumentUploadStep
             title="Latest Bank Statement"
@@ -553,8 +589,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 13: Declaration Of Disclosure
-      case 13:
+      // Step 14: Declaration Of Disclosure
+      case 14:
         return (
           <>
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
