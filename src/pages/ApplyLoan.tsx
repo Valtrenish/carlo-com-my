@@ -208,60 +208,38 @@ const ApplyLoan = () => {
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               First Things First
             </h1>
-            <MandatoryNotice />
-            <div className="space-y-4">
+            <h3 className="text-carlo-orange font-semibold mb-4">What We Need</h3>
+            <div className="space-y-5">
               <div>
-                <Label className="text-sm font-medium text-foreground">Full Name (as per IC) *</Label>
-                <Input className="mt-1" placeholder="Enter your full name" />
+                <p className="font-bold text-foreground">
+                  NRIC <span className="font-normal text-muted-foreground">(Clear Front & Back Copy )</span>
+                </p>
+                <p className="text-sm text-muted-foreground mt-1 border-b border-border pb-2">
+                  Non-Malaysians will need to contact us directly
+                </p>
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">IC Number *</Label>
-                <Input className="mt-1" placeholder="e.g. 900101-10-1234" />
+                <p className="font-bold text-foreground">Driving License</p>
+                <p className="text-sm text-muted-foreground mt-1 border-b border-border pb-2">
+                  Non-Malaysians will need to contact us directly
+                </p>
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Phone Number *</Label>
-                <Input className="mt-1" placeholder="e.g. 012-345 6789" />
+                <p className="font-bold text-foreground">Latest Payslip & Bank Statement</p>
+                <p className="font-bold text-foreground text-sm mt-1">
+                  3 Months <span className="font-normal text-muted-foreground">(Salaried Employee)</span>
+                </p>
+                <p className="font-bold text-foreground text-sm mt-1">
+                  6 Months <span className="font-normal text-muted-foreground">(Self-employed, Commission Earners)</span>
+                </p>
               </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Email Address *</Label>
-                <Input className="mt-1" type="email" placeholder="e.g. name@email.com" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Date of Birth *</Label>
-                <Input className="mt-1" type="date" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Gender *</Label>
-                <RadioGroup className="mt-2 flex gap-4">
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="male" id="gender-male" />
-                    <Label htmlFor="gender-male" className="text-sm">Male</Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="female" id="gender-female" />
-                    <Label htmlFor="gender-female" className="text-sm">Female</Label>
-                  </div>
-                </RadioGroup>
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Marital Status *</Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="single">Single</option>
-                  <option value="married">Married</option>
-                  <option value="divorced">Divorced</option>
-                </select>
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Race *</Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="malay">Malay</option>
-                  <option value="chinese">Chinese</option>
-                  <option value="indian">Indian</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
+              <p className="text-sm text-muted-foreground border-b border-border pb-2">
+                For 'Others', please contact our team for a personalized consultation.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-whatsapp mt-6">
+              <Shield className="h-5 w-5" />
+              <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
           </>
