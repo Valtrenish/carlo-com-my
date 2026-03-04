@@ -369,18 +369,6 @@ const ApplyLoan = () => {
             <MandatoryNotice />
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">Address Line 1 *</Label>
-                <Input className="mt-1" placeholder="Street address" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Address Line 2</Label>
-                <Input className="mt-1" placeholder="Apartment, unit, etc." />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Postcode *</Label>
-                <Input className="mt-1" placeholder="e.g. 55000" />
-              </div>
-              <div>
                 <Label className="text-sm font-medium text-foreground">City *</Label>
                 <Input className="mt-1" placeholder="e.g. Kuala Lumpur" />
               </div>
