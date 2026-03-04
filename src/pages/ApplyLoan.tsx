@@ -359,31 +359,37 @@ const ApplyLoan = () => {
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               What You Do For Work
             </h1>
-            <p className="text-center text-muted-foreground mb-6">Quick Rules</p>
-            <MandatoryNotice />
+            <p className="text-center text-muted-foreground mb-6">
+              The clearer it is, the higher the chances of your loan being approved
+            </p>
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">Occupation *</Label>
-                <Input className="mt-1" placeholder="e.g. Software Engineer" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Industry / Sector *</Label>
+                <Label className="text-sm font-bold text-foreground">Occupation <span className="text-destructive">*</span></Label>
                 <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="it">IT / Technology</option>
-                  <option value="finance">Finance / Banking</option>
-                  <option value="healthcare">Healthcare</option>
-                  <option value="education">Education</option>
-                  <option value="manufacturing">Manufacturing</option>
-                  <option value="retail">Retail</option>
+                  <option value="private">Private</option>
                   <option value="government">Government</option>
+                  <option value="self-employed">Self-Employed</option>
                   <option value="others">Others</option>
                 </select>
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Years of Employment *</Label>
-                <Input className="mt-1" type="number" placeholder="e.g. 3" />
+                <Label className="text-sm font-bold text-foreground">Length Of Service <span className="text-destructive">*</span></Label>
+                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                  <option value="less-1">Less than 1 year</option>
+                  <option value="1-3">1 - 3 years</option>
+                  <option value="3-5">3 - 5 years</option>
+                  <option value="5+">More than 5 years</option>
+                </select>
+                <p className="text-sm text-muted-foreground mt-1 italic">How long have you been working with your current employer.</p>
               </div>
+              <div>
+                <Label className="text-sm font-bold text-foreground">Employer Name <span className="text-destructive">*</span></Label>
+                <Input className="mt-1" placeholder="Enter Employer Name" />
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-whatsapp mt-6">
+              <Shield className="h-5 w-5" />
+              <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
           </>
