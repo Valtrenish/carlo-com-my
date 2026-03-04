@@ -330,25 +330,30 @@ const ApplyLoan = () => {
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Tell Us About Yourself
             </h1>
-            <MandatoryNotice />
+            <p className="text-center text-muted-foreground mb-6">
+              We need this information to easily reach you and process your application
+            </p>
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">Employment Type *</Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="">Select</option>
-                  <option value="employed">Employed</option>
-                  <option value="self-employed">Self-Employed</option>
-                  <option value="government">Government</option>
-                </select>
+                <Label className="text-sm font-medium text-foreground">Full Name as per NRIC *</Label>
+                <Input className="mt-1" placeholder="Enter Full Name" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Company Name *</Label>
-                <Input className="mt-1" placeholder="Enter company name" />
+                <Label className="text-sm font-medium text-foreground">NRIC Number *</Label>
+                <Input className="mt-1" placeholder="Enter NRIC Number" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Monthly Gross Income (RM) *</Label>
-                <Input className="mt-1" type="number" placeholder="e.g. 5000" />
+                <Label className="text-sm font-medium text-foreground">Mobile Number *</Label>
+                <Input className="mt-1" placeholder="Enter Mobile Number" />
               </div>
+              <div>
+                <Label className="text-sm font-medium text-foreground">Email Address *</Label>
+                <Input className="mt-1" type="email" placeholder="Enter Email Address" />
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-whatsapp mt-6">
+              <Shield className="h-5 w-5" />
+              <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
           </>
