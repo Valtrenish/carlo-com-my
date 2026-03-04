@@ -439,13 +439,32 @@ const ApplyLoan = () => {
       // Step 7: Time For A Selfie
       case 7:
         return (
-          <DocumentUploadStep
-            title="Time For A Selfie"
-            description="Take a clear selfie of yourself. Make sure your face is clearly visible and well-lit."
-            icon={Camera}
-            onBack={goBack}
-            onNext={goNext}
-          />
+          <>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">Time For A Selfie</h1>
+            <div className="flex flex-col items-center justify-center py-4">
+              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
+                <Camera className="h-10 w-10 text-carlo-orange" />
+              </div>
+            </div>
+
+            {/* Quick Guide */}
+            <div className="bg-accent/30 border border-accent rounded-xl p-5 mb-6">
+              <h3 className="text-base font-bold text-foreground mb-3">Quick Guide</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                <li>Take your photo in a well-lit room</li>
+                <li>Choose the best photo quality that your device camera has</li>
+                <li>Hold up the identification document (ID) next to your face like in the sample photo below</li>
+                <li>Please ensure that your face and ID details can be clearly seen in your photo</li>
+              </ul>
+            </div>
+
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors">
+              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
+              <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
+            </div>
+            <StepButtons onBack={goBack} onNext={goNext} />
+          </>
         );
 
       // Step 8: Useful References
