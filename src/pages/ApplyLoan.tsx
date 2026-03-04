@@ -7,7 +7,7 @@ import { Shield, Upload, Camera, FileText, CreditCard, AlertCircle } from "lucid
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const TOTAL_STEPS = 15;
+const TOTAL_STEPS = 14;
 
 const STEP_TITLES = [
   "Read This, It's Important",
@@ -19,7 +19,6 @@ const STEP_TITLES = [
   "What You Do For Work",
   "Time For A Selfie",
   "Selfie Verification",
-  "Useful References",
   "NRIC",
   "Driving License",
   "Latest Payslip",
@@ -461,46 +460,8 @@ const ApplyLoan = () => {
           </>
         );
 
-      // Step 9: Useful References
+      // Step 9: NRIC
       case 9:
-        return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
-              Useful References
-            </h1>
-            <MandatoryNotice />
-            <div className="space-y-4">
-              <div>
-                <Label className="text-sm font-medium text-foreground">Reference Name 1 *</Label>
-                <Input className="mt-1" placeholder="Full name" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Relationship *</Label>
-                <Input className="mt-1" placeholder="e.g. Spouse, Sibling, Friend" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Contact Number *</Label>
-                <Input className="mt-1" placeholder="e.g. 012-345 6789" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Reference Name 2</Label>
-                <Input className="mt-1" placeholder="Full name" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Relationship</Label>
-                <Input className="mt-1" placeholder="e.g. Colleague, Friend" />
-              </div>
-              <div>
-                <Label className="text-sm font-medium text-foreground">Contact Number</Label>
-                <Input className="mt-1" placeholder="e.g. 012-345 6789" />
-              </div>
-            </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
-          </>
-        );
-
-      // Step 10: NRIC
-      case 10:
         return (
           <DocumentUploadStep
             title="NRIC"
@@ -511,8 +472,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 11: Driving License
-      case 11:
+      // Step 10: Driving License
+      case 10:
         return (
           <DocumentUploadStep
             title="Driving License"
@@ -523,8 +484,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 12: Latest Payslip
-      case 12:
+      // Step 11: Latest Payslip
+      case 11:
         return (
           <DocumentUploadStep
             title="Latest Payslip"
@@ -535,8 +496,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 13: Latest Bank Statement
-      case 13:
+      // Step 12: Latest Bank Statement
+      case 12:
         return (
           <DocumentUploadStep
             title="Latest Bank Statement"
@@ -547,8 +508,8 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 14: Declaration Of Disclosure
-      case 14:
+      // Step 13: Declaration Of Disclosure
+      case 13:
         return (
           <>
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
