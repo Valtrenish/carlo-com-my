@@ -11,8 +11,7 @@ const Header = () => {
   const location = useLocation();
 
   const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Contact", href: "#contact" }];
+  { name: "Home", href: "/" }];
 
 
   return (
@@ -52,17 +51,15 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => {}
-
-
-
-
-
-
-
-
-
-            )}
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-sm font-medium transition-colors hover:text-primary"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
 
           {/* CTA Button */}
