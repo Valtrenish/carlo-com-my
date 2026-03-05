@@ -270,7 +270,7 @@ const ApplyLoan = () => {
                 <Label className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
                 <Input className="mt-1" placeholder="Enter Amount" type="number" />
               </div>
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
+              <Button id={`btn-loan-update-amount-${progressPercent}pct`} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
                 Update Amount
               </Button>
             </div>
