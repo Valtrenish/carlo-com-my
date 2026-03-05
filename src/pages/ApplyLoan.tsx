@@ -39,16 +39,19 @@ const StepButtons = ({
   showBack = true,
   showSaveDraft = true,
   nextLabel = "Next",
+  stepProgress = 0,
 }: {
   onBack?: () => void;
   onNext: () => void;
   showBack?: boolean;
   showSaveDraft?: boolean;
   nextLabel?: string;
+  stepProgress?: number;
 }) => (
   <div className="flex flex-col sm:flex-row gap-3 mt-8">
     {showBack && (
       <Button
+        id={`btn-loan-back-${stepProgress}pct`}
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
         onClick={onBack}
@@ -58,6 +61,7 @@ const StepButtons = ({
     )}
     {showSaveDraft && (
       <Button
+        id={`btn-loan-save-draft-${stepProgress}pct`}
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
       >
@@ -65,6 +69,7 @@ const StepButtons = ({
       </Button>
     )}
     <Button
+      id={`btn-loan-next-${stepProgress}pct`}
       className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground"
       onClick={onNext}
     >
@@ -79,12 +84,14 @@ const DocumentUploadStep = ({
   icon: Icon,
   onBack,
   onNext,
+  stepProgress = 0,
 }: {
   title: string;
   description: string;
   icon: React.ElementType;
   onBack: () => void;
   onNext: () => void;
+  stepProgress?: number;
 }) => (
   <>
     <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</h1>
@@ -100,7 +107,7 @@ const DocumentUploadStep = ({
       <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
       <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
     </div>
-    <StepButtons onBack={onBack} onNext={onNext} />
+    <StepButtons onBack={onBack} onNext={onNext} stepProgress={stepProgress} />
   </>
 );
 
@@ -160,7 +167,7 @@ const ApplyLoan = () => {
                 <span className="text-sm font-medium">Your data is kept secure and confidential</span>
               </div>
             </div>
-            <StepButtons onNext={goNext} showBack={false} />
+            <StepButtons onNext={goNext} showBack={false} stepProgress={progressPercent} />
           </>
         );
 
@@ -196,7 +203,7 @@ const ApplyLoan = () => {
                 </select>
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} />
+            <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} stepProgress={progressPercent} />
           </>
         );
 
@@ -240,7 +247,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
@@ -263,7 +270,7 @@ const ApplyLoan = () => {
                 <Label className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
                 <Input className="mt-1" placeholder="Enter Amount" type="number" />
               </div>
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
+              <Button id={`btn-loan-update-amount-${progressPercent}pct`} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
                 Update Amount
               </Button>
             </div>
@@ -271,7 +278,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
@@ -307,7 +314,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
@@ -347,7 +354,7 @@ const ApplyLoan = () => {
                 </select>
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
@@ -390,7 +397,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
@@ -421,7 +428,7 @@ const ApplyLoan = () => {
               <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
               <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
@@ -456,19 +463,20 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
       // Step 9: NRIC
       case 9:
         return (
-          <DocumentUploadStep
+           <DocumentUploadStep
             title="NRIC"
             description="Upload a clear photo of the front and back of your NRIC (MyKad)."
             icon={CreditCard}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
@@ -481,6 +489,7 @@ const ApplyLoan = () => {
             icon={CreditCard}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
@@ -493,6 +502,7 @@ const ApplyLoan = () => {
             icon={FileText}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
@@ -505,6 +515,7 @@ const ApplyLoan = () => {
             icon={FileText}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
@@ -539,7 +550,7 @@ const ApplyLoan = () => {
                 </Label>
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" />
+            <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" stepProgress={progressPercent} />
           </>
         );
 
