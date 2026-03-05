@@ -17,7 +17,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/apply-loan" element={<ApplyLoan />} />
+          <Route path="/loan-calculator" element={<Index />} />
+          <Route path="/loan-check" element={<ApplyLoan />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

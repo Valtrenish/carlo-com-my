@@ -122,7 +122,7 @@ const LoanCalculator = () => {
                 Calculate Payment
               </Button>
               <Button asChild className="flex-1 bg-carlo-blue hover:bg-carlo-blue/90 text-white font-bold">
-                <Link to="/apply-loan">
+                <Link to="/loan-check">
                   Find Cars Within Budget
                 </Link>
               </Button>
