@@ -1,9 +1,13 @@
+import testimonialNorzana from "@/assets/testimonial-norzana.webp";
+import testimonialMuniandy from "@/assets/testimonial-muniandy.webp";
+import testimonialKalaiselvi from "@/assets/testimonial-kalaiselvi.webp";
+
 const testimonials = [
   {
     name: "Norzana",
     location: "Sekinchan, Selangor",
     quote: "Saya dah cuba banyak tempat tapi tak berjaya memiliki kereta idaman sy. Alhamdulillah dgn Carlo sy berjaya memiliki kereta idaman sy.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
+    image: testimonialNorzana,
   },
   {
     name: "Muniandy",
