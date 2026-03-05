@@ -13,7 +13,7 @@ const testimonials = [
     name: "Muniandy",
     location: "Klang, Selangor",
     quote: "Awesome car buying service!! Thank u Akmal for make my dreams come true. Definitely will recommend you to others.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    image: testimonialMuniandy,
   },
   {
     name: "Kalaiselvi",
