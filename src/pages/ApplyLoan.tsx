@@ -10,83 +10,83 @@ import Footer from "@/components/Footer";
 const TOTAL_STEPS = 14;
 
 const STEP_TITLES = [
-"Read This, It's Important",
-"What Is Your Application For?",
-"First Things First",
-"Choose & Customize Your Car",
-"Tell Us About Yourself",
-"Send Us Your Location",
-"What You Do For Work",
-"Time For A Selfie",
-"Selfie Verification",
-"NRIC",
-"Driving License",
-"Latest Payslip",
-"Latest Bank Statement",
-"Declaration Of Disclosure"];
+  "Read This, It's Important",
+  "What Is Your Application For?",
+  "First Things First",
+  "Choose & Customize Your Car",
+  "Tell Us About Yourself",
+  "Send Us Your Location",
+  "What You Do For Work",
+  "Time For A Selfie",
+  "Selfie Verification",
+  "NRIC",
+  "Driving License",
+  "Latest Payslip",
+  "Latest Bank Statement",
+  "Declaration Of Disclosure",
+];
 
-
-const MandatoryNotice = () =>
-<div className="flex items-center gap-2 text-destructive mb-6">
+const MandatoryNotice = () => (
+  <div className="flex items-center gap-2 text-destructive mb-6">
     <AlertCircle className="h-4 w-4" />
     <span className="text-sm font-medium">You must fill mandatory fields</span>
-  </div>;
-
+  </div>
+);
 
 const StepButtons = ({
   onBack,
   onNext,
   showBack = true,
   showSaveDraft = true,
-  nextLabel = "Next"
-
-
-
-
-
-
-}: {onBack?: () => void;onNext: () => void;showBack?: boolean;showSaveDraft?: boolean;nextLabel?: string;}) =>
-<div className="flex flex-col sm:flex-row gap-3 mt-8">
-    {showBack &&
-  <Button
-    variant="outline"
-    className="flex-1 border-border text-foreground hover:bg-muted"
-    onClick={onBack}>
-    
+  nextLabel = "Next",
+}: {
+  onBack?: () => void;
+  onNext: () => void;
+  showBack?: boolean;
+  showSaveDraft?: boolean;
+  nextLabel?: string;
+}) => (
+  <div className="flex flex-col sm:flex-row gap-3 mt-8">
+    {showBack && (
+      <Button
+        variant="outline"
+        className="flex-1 border-border text-foreground hover:bg-muted"
+        onClick={onBack}
+      >
         Back
       </Button>
-  }
-    {showSaveDraft &&
-  <Button
-    variant="outline"
-    className="flex-1 border-border text-foreground hover:bg-muted">
-    
+    )}
+    {showSaveDraft && (
+      <Button
+        variant="outline"
+        className="flex-1 border-border text-foreground hover:bg-muted"
+      >
         Save Draft
       </Button>
-  }
+    )}
     <Button
-    className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground"
-    onClick={onNext}>
-    
+      className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+      onClick={onNext}
+    >
       {nextLabel}
     </Button>
-  </div>;
-
+  </div>
+);
 
 const DocumentUploadStep = ({
   title,
   description,
   icon: Icon,
   onBack,
-  onNext
-
-
-
-
-
-
-}: {title: string;description: string;icon: React.ElementType;onBack: () => void;onNext: () => void;}) =>
-<>
+  onNext,
+}: {
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  onBack: () => void;
+  onNext: () => void;
+}) => (
+  <>
     <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</h1>
     <div className="flex flex-col items-center justify-center py-8">
       <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
@@ -101,13 +101,13 @@ const DocumentUploadStep = ({
       <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
     </div>
     <StepButtons onBack={onBack} onNext={onNext} />
-  </>;
-
+  </>
+);
 
 const ApplyLoan = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const progressPercent = Math.round((currentStep + 1) / TOTAL_STEPS * 100);
+  const progressPercent = Math.round(((currentStep + 1) / TOTAL_STEPS) * 100);
 
   const goNext = () => {
     if (currentStep < TOTAL_STEPS - 1) setCurrentStep(currentStep + 1);
@@ -161,8 +161,8 @@ const ApplyLoan = () => {
               </div>
             </div>
             <StepButtons onNext={goNext} showBack={false} />
-          </>);
-
+          </>
+        );
 
       // Step 1: What Is Your Application For?
       case 1:
@@ -173,19 +173,19 @@ const ApplyLoan = () => {
             </h1>
             <MandatoryNotice />
             <div className="space-y-4">
-              
-
-
-
-
-
-
-
-
-
-
-
-              
+              <div>
+                <Label className="text-sm font-medium text-foreground">Refinance</Label>
+                <RadioGroup className="mt-2">
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="yes" id="refinance-yes" />
+                    <Label htmlFor="refinance-yes" className="text-sm">Yes</Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <RadioGroupItem value="no" id="refinance-no" />
+                    <Label htmlFor="refinance-no" className="text-sm">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
               <div>
                 <Label className="text-sm font-medium text-foreground">Purpose of Application *</Label>
                 <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
@@ -197,8 +197,8 @@ const ApplyLoan = () => {
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} />
-          </>);
-
+          </>
+        );
 
       // Step 2: First Things First
       case 2:
@@ -241,8 +241,8 @@ const ApplyLoan = () => {
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 3: Choose & Customize Your Car
       case 3:
@@ -272,8 +272,8 @@ const ApplyLoan = () => {
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 4: Tell Us About Yourself
       case 4:
@@ -308,8 +308,8 @@ const ApplyLoan = () => {
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 5: Send Us Your Location
       case 5:
@@ -348,8 +348,8 @@ const ApplyLoan = () => {
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 6: What You Do For Work
       case 6:
@@ -391,8 +391,8 @@ const ApplyLoan = () => {
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 7: Time For A Selfie
       case 7:
@@ -422,8 +422,8 @@ const ApplyLoan = () => {
               <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 8: Selfie Verification
       case 8:
@@ -457,8 +457,8 @@ const ApplyLoan = () => {
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} />
-          </>);
-
+          </>
+        );
 
       // Step 9: NRIC
       case 9:
@@ -468,9 +468,9 @@ const ApplyLoan = () => {
             description="Upload a clear photo of the front and back of your NRIC (MyKad)."
             icon={CreditCard}
             onBack={goBack}
-            onNext={goNext} />);
-
-
+            onNext={goNext}
+          />
+        );
 
       // Step 10: Driving License
       case 10:
@@ -480,9 +480,9 @@ const ApplyLoan = () => {
             description="Upload a clear photo of your valid driving license (front and back)."
             icon={CreditCard}
             onBack={goBack}
-            onNext={goNext} />);
-
-
+            onNext={goNext}
+          />
+        );
 
       // Step 11: Latest Payslip
       case 11:
@@ -492,9 +492,9 @@ const ApplyLoan = () => {
             description="Upload your latest payslip (not older than 3 months)."
             icon={FileText}
             onBack={goBack}
-            onNext={goNext} />);
-
-
+            onNext={goNext}
+          />
+        );
 
       // Step 12: Latest Bank Statement
       case 12:
@@ -504,9 +504,9 @@ const ApplyLoan = () => {
             description="Upload your latest 3 months bank statement."
             icon={FileText}
             onBack={goBack}
-            onNext={goNext} />);
-
-
+            onNext={goNext}
+          />
+        );
 
       // Step 13: Declaration Of Disclosure
       case 13:
@@ -532,16 +532,16 @@ const ApplyLoan = () => {
                 <input
                   type="checkbox"
                   id="agree"
-                  className="mt-1 h-4 w-4 rounded border-input accent-secondary" />
-                
+                  className="mt-1 h-4 w-4 rounded border-input accent-secondary"
+                />
                 <Label htmlFor="agree" className="text-sm text-foreground">
                   I agree to the above declaration and the Terms & Conditions *
                 </Label>
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" />
-          </>);
-
+          </>
+        );
 
       default:
         return null;
@@ -562,8 +562,8 @@ const ApplyLoan = () => {
                 <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className="h-full bg-primary rounded-full transition-all duration-300"
-                    style={{ width: `${progressPercent}%` }}>
-                  </div>
+                    style={{ width: `${progressPercent}%` }}
+                  ></div>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground">
@@ -580,8 +580,8 @@ const ApplyLoan = () => {
       </main>
 
       <Footer />
-    </div>);
-
+    </div>
+  );
 };
 
 export default ApplyLoan;
