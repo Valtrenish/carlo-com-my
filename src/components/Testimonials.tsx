@@ -19,7 +19,7 @@ const testimonials = [
     name: "Kalaiselvi",
     location: "Cheras, Kuala Lumpur",
     quote: "Easy dealing with you, kekak! Definitely will recommend you to others.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    image: testimonialKalaiselvi,
   },
 ];
 
