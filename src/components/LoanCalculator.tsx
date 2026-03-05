@@ -115,14 +115,13 @@ const LoanCalculator = () => {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
-                id="btn-calculate-payment"
                 variant="outline"
                 className="flex-1 border-carlo-blue text-carlo-blue hover:bg-carlo-blue hover:text-white font-bold"
                 onClick={() => {}}
               >
                 Calculate Payment
               </Button>
-              <Button id="btn-find-cars" asChild className="flex-1 bg-carlo-blue hover:bg-carlo-blue/90 text-white font-bold">
+              <Button asChild className="flex-1 bg-carlo-blue hover:bg-carlo-blue/90 text-white font-bold">
                 <Link to="/loan-check">
                   Find Cars Within Budget
                 </Link>
