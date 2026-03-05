@@ -203,7 +203,7 @@ const ApplyLoan = () => {
                 </select>
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} />
+            <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} stepProgress={progressPercent} />
           </>
         );
 
