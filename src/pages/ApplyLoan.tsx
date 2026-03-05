@@ -84,12 +84,14 @@ const DocumentUploadStep = ({
   icon: Icon,
   onBack,
   onNext,
+  stepProgress = 0,
 }: {
   title: string;
   description: string;
   icon: React.ElementType;
   onBack: () => void;
   onNext: () => void;
+  stepProgress?: number;
 }) => (
   <>
     <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</h1>
@@ -105,7 +107,7 @@ const DocumentUploadStep = ({
       <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
       <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
     </div>
-    <StepButtons onBack={onBack} onNext={onNext} />
+    <StepButtons onBack={onBack} onNext={onNext} stepProgress={stepProgress} />
   </>
 );
 
