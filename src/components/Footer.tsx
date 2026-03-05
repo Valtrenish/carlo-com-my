@@ -68,12 +68,12 @@ const Footer = () => {
             <div className="h-1 w-12 bg-carlo-orange mb-4"></div>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
-                  Home
+                <Link to="/loan-calculator" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
+                  Loan Calculator
                 </Link>
               </li>
               <li>
-                <Link to="/apply-loan" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
+                <Link to="/loan-check" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
                   Apply Loan
                 </Link>
               </li>
