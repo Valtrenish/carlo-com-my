@@ -489,6 +489,7 @@ const ApplyLoan = () => {
             icon={CreditCard}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
