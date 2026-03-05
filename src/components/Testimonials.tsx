@@ -1,25 +1,21 @@
-import norzanaImg from "@/assets/testimonial-norzana.webp";
-import muniandyImg from "@/assets/testimonial-muniandy.webp";
-import kalaiselviImg from "@/assets/testimonial-kalaiselvi.webp";
-
 const testimonials = [
   {
     name: "Norzana",
     location: "Sekinchan, Selangor",
     quote: "Saya dah cuba banyak tempat tapi tak berjaya memiliki kereta idaman sy. Alhamdulillah dgn Carlo sy berjaya memiliki kereta idaman sy.",
-    image: norzanaImg,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
   },
   {
     name: "Muniandy",
     location: "Klang, Selangor",
     quote: "Awesome car buying service!! Thank u Akmal for make my dreams come true. Definitely will recommend you to others.",
-    image: muniandyImg,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
   },
   {
     name: "Kalaiselvi",
     location: "Cheras, Kuala Lumpur",
     quote: "Easy dealing with you, kekak! Definitely will recommend you to others.",
-    image: kalaiselviImg,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
   },
 ];
 
