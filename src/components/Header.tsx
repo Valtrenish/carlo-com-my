@@ -17,7 +17,7 @@ const Header = () => {
 
 
   return (
-    <header className="sticky top-0 z-50 bg-background shadow-sm">
+    <header className="sticky top-0 z-50 bg-background shadow-sm" role="banner">
       {/* Top bar */}
       <div className="bg-muted py-2">
         <div className="container-carlo flex flex-wrap items-center justify-between gap-2 text-sm text-muted-foreground">

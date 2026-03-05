@@ -107,7 +107,7 @@ const LoanCalculator = () => {
             </div>
 
             <div className="mb-6">
-              <p className="text-sm font-bold text-foreground mb-1">Montly Payment</p>
+              <p className="text-sm font-bold text-foreground mb-1">Monthly Payment</p>
               <p className="text-2xl md:text-3xl font-bold text-primary">
                 RM{monthlyPayment.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}/mth
               </p>
