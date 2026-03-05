@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Shield, Upload, Camera, FileText, CreditCard, AlertCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const TOTAL_STEPS = 14;
 
@@ -27,8 +28,8 @@ const STEP_TITLES = [
 ];
 
 const MandatoryNotice = () => (
-  <div className="flex items-center gap-2 text-destructive mb-6">
-    <AlertCircle className="h-4 w-4" />
+  <div className="flex items-center gap-2 text-destructive mb-6" role="alert">
+    <AlertCircle className="h-4 w-4" aria-hidden="true" />
     <span className="text-sm font-medium">You must fill mandatory fields</span>
   </div>
 );
@@ -48,7 +49,7 @@ const StepButtons = ({
   nextLabel?: string;
   stepProgress?: number;
 }) => (
-  <div className="flex flex-col sm:flex-row gap-3 mt-8">
+  <nav className="flex flex-col sm:flex-row gap-3 mt-8" aria-label="Form navigation">
     {showBack && (
       <Button
         id={`btn-loan-back-${stepProgress}pct`}
@@ -75,7 +76,7 @@ const StepButtons = ({
     >
       {nextLabel}
     </Button>
-  </div>
+  </nav>
 );
 
 const DocumentUploadStep = ({
@@ -93,22 +94,22 @@ const DocumentUploadStep = ({
   onNext: () => void;
   stepProgress?: number;
 }) => (
-  <>
-    <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</h1>
+  <fieldset>
+    <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</legend>
     <div className="flex flex-col items-center justify-center py-8">
       <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
-        <Icon className="h-10 w-10 text-carlo-orange" />
+        <Icon className="h-10 w-10 text-carlo-orange" aria-hidden="true" />
       </div>
       <p className="text-muted-foreground text-sm text-center mb-6">{description}</p>
     </div>
     <MandatoryNotice />
-    <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors">
-      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+    <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors" role="button" tabIndex={0} aria-label={`Upload ${title} document`}>
+      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
       <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
       <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
     </div>
     <StepButtons onBack={onBack} onNext={onNext} stepProgress={stepProgress} />
-  </>
+  </fieldset>
 );
 
 const ApplyLoan = () => {
@@ -126,10 +127,9 @@ const ApplyLoan = () => {
 
   const renderStep = () => {
     switch (currentStep) {
-      // Step 0: Intro
       case 0:
         return (
-          <>
+          <article>
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Read This, It's Important
             </h1>
@@ -163,21 +163,20 @@ const ApplyLoan = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2 text-whatsapp">
-                <Shield className="h-5 w-5" />
+                <Shield className="h-5 w-5" aria-hidden="true" />
                 <span className="text-sm font-medium">Your data is kept secure and confidential</span>
               </div>
             </div>
             <StepButtons onNext={goNext} showBack={false} stepProgress={progressPercent} />
-          </>
+          </article>
         );
 
-      // Step 1: What Is Your Application For?
       case 1:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               What Is Your Application For?
-            </h1>
+            </legend>
             <MandatoryNotice />
             <div className="space-y-4">
               <div>
@@ -194,8 +193,8 @@ const ApplyLoan = () => {
                 </RadioGroup>
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Purpose of Application *</Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <Label htmlFor="purpose" className="text-sm font-medium text-foreground">Purpose of Application *</Label>
+                <select id="purpose" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
                   <option value="">Select purpose</option>
                   <option value="personal">Personal Use</option>
                   <option value="business">Business Use</option>
@@ -204,13 +203,12 @@ const ApplyLoan = () => {
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 2: First Things First
       case 2:
         return (
-          <>
+          <article>
             <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               First Things First
             </h1>
@@ -218,7 +216,7 @@ const ApplyLoan = () => {
             <div className="space-y-5">
               <div>
                 <p className="font-bold text-foreground">
-                  NRIC <span className="font-normal text-muted-foreground">(Clear Front & Back Copy )</span>
+                  NRIC <span className="font-normal text-muted-foreground">(Clear Front & Back Copy)</span>
                 </p>
                 <p className="text-sm text-muted-foreground mt-1 border-b border-border pb-2">
                   Non-Malaysians will need to contact us directly
@@ -244,96 +242,93 @@ const ApplyLoan = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 text-whatsapp mt-6">
-              <Shield className="h-5 w-5" />
+              <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </article>
         );
 
-      // Step 3: Choose & Customize Your Car
       case 3:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Choose & Customize Your Car
-            </h1>
+            </legend>
             <p className="text-center text-muted-foreground mb-6">
               Tell us about your choice and if you want to make it unique
             </p>
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">Downpayment (RM) *</Label>
-                <Input className="mt-1" placeholder="Enter Amount" type="number" />
+                <Label htmlFor="downpayment" className="text-sm font-medium text-foreground">Downpayment (RM) *</Label>
+                <Input id="downpayment" className="mt-1" placeholder="Enter Amount" type="number" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
-                <Input className="mt-1" placeholder="Enter Amount" type="number" />
+                <Label htmlFor="loan-period" className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
+                <Input id="loan-period" className="mt-1" placeholder="Enter Amount" type="number" />
               </div>
               <Button id={`btn-loan-update-amount-${progressPercent}pct`} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
                 Update Amount
               </Button>
             </div>
             <div className="flex items-center gap-2 text-whatsapp mt-6">
-              <Shield className="h-5 w-5" />
+              <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 4: Tell Us About Yourself
       case 4:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Tell Us About Yourself
-            </h1>
+            </legend>
             <p className="text-center text-muted-foreground mb-6">
               We need this information to easily reach you and process your application
             </p>
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">Full Name as per NRIC *</Label>
-                <Input className="mt-1" placeholder="Enter Full Name" />
+                <Label htmlFor="fullName" className="text-sm font-medium text-foreground">Full Name as per NRIC *</Label>
+                <Input id="fullName" className="mt-1" placeholder="Enter Full Name" autoComplete="name" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">NRIC Number *</Label>
-                <Input className="mt-1" placeholder="Enter NRIC Number" />
+                <Label htmlFor="nricNumber" className="text-sm font-medium text-foreground">NRIC Number *</Label>
+                <Input id="nricNumber" className="mt-1" placeholder="Enter NRIC Number" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Mobile Number *</Label>
-                <Input className="mt-1" placeholder="Enter Mobile Number" />
+                <Label htmlFor="mobileNumber" className="text-sm font-medium text-foreground">Mobile Number *</Label>
+                <Input id="mobileNumber" className="mt-1" placeholder="Enter Mobile Number" type="tel" autoComplete="tel" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">Email Address *</Label>
-                <Input className="mt-1" type="email" placeholder="Enter Email Address" />
+                <Label htmlFor="emailAddress" className="text-sm font-medium text-foreground">Email Address *</Label>
+                <Input id="emailAddress" className="mt-1" type="email" placeholder="Enter Email Address" autoComplete="email" />
               </div>
             </div>
             <div className="flex items-center gap-2 text-whatsapp mt-6">
-              <Shield className="h-5 w-5" />
+              <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 5: Send Us Your Location
       case 5:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Send Us Your Location
-            </h1>
+            </legend>
             <MandatoryNotice />
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-medium text-foreground">City *</Label>
-                <Input className="mt-1" placeholder="e.g. Kuala Lumpur" />
+                <Label htmlFor="city" className="text-sm font-medium text-foreground">City *</Label>
+                <Input id="city" className="mt-1" placeholder="e.g. Kuala Lumpur" autoComplete="address-level2" />
               </div>
               <div>
-                <Label className="text-sm font-medium text-foreground">State *</Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <Label htmlFor="state" className="text-sm font-medium text-foreground">State *</Label>
+                <select id="state" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
                   <option value="">Select state</option>
                   <option value="johor">Johor</option>
                   <option value="kedah">Kedah</option>
@@ -355,23 +350,22 @@ const ApplyLoan = () => {
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 6: What You Do For Work
       case 6:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               What You Do For Work
-            </h1>
+            </legend>
             <p className="text-center text-muted-foreground mb-6">
               The clearer it is, the higher the chances of your loan being approved
             </p>
             <div className="space-y-4">
               <div>
-                <Label className="text-sm font-bold text-foreground">Occupation <span className="text-destructive">*</span></Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <Label htmlFor="occupation" className="text-sm font-bold text-foreground">Occupation <span className="text-destructive">*</span></Label>
+                <select id="occupation" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
                   <option value="private">Private</option>
                   <option value="government">Government</option>
                   <option value="self-employed">Self-Employed</option>
@@ -379,8 +373,8 @@ const ApplyLoan = () => {
                 </select>
               </div>
               <div>
-                <Label className="text-sm font-bold text-foreground">Length Of Service <span className="text-destructive">*</span></Label>
-                <select className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <Label htmlFor="service-length" className="text-sm font-bold text-foreground">Length Of Service <span className="text-destructive">*</span></Label>
+                <select id="service-length" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
                   <option value="less-1">Less than 1 year</option>
                   <option value="1-3">1 - 3 years</option>
                   <option value="3-5">3 - 5 years</option>
@@ -389,30 +383,28 @@ const ApplyLoan = () => {
                 <p className="text-sm text-muted-foreground mt-1 italic">How long have you been working with your current employer.</p>
               </div>
               <div>
-                <Label className="text-sm font-bold text-foreground">Employer Name <span className="text-destructive">*</span></Label>
-                <Input className="mt-1" placeholder="Enter Employer Name" />
+                <Label htmlFor="employer" className="text-sm font-bold text-foreground">Employer Name <span className="text-destructive">*</span></Label>
+                <Input id="employer" className="mt-1" placeholder="Enter Employer Name" autoComplete="organization" />
               </div>
             </div>
             <div className="flex items-center gap-2 text-whatsapp mt-6">
-              <Shield className="h-5 w-5" />
+              <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 7: Time For A Selfie
       case 7:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">Time For A Selfie</h1>
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">Time For A Selfie</legend>
             <div className="flex flex-col items-center justify-center py-4">
               <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
-                <Camera className="h-10 w-10 text-carlo-orange" />
+                <Camera className="h-10 w-10 text-carlo-orange" aria-hidden="true" />
               </div>
             </div>
 
-            {/* Quick Guide */}
             <div className="bg-accent/30 border border-accent rounded-xl p-5 mb-6">
               <h3 className="text-base font-bold text-foreground mb-3">Quick Guide</h3>
               <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
@@ -423,35 +415,34 @@ const ApplyLoan = () => {
               </ul>
             </div>
 
-            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors">
-              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors" role="button" tabIndex={0} aria-label="Upload selfie photo">
+              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
               <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
               <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 8: Selfie Verification
       case 8:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Selfie Verification
-            </h1>
+            </legend>
             <div className="flex flex-col items-center justify-center py-6">
               <div className="w-40 h-40 rounded-2xl bg-muted/50 border border-border flex items-center justify-center mb-6 relative">
-                <Camera className="h-16 w-16 text-carlo-orange" />
+                <Camera className="h-16 w-16 text-carlo-orange" aria-hidden="true" />
                 <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-whatsapp flex items-center justify-center">
-                  <svg className="w-5 h-5 text-whatsapp-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-whatsapp-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               </div>
             </div>
 
-            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors mb-6">
-              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors mb-6" role="button" tabIndex={0} aria-label="Upload selfie verification photo">
+              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
               <p className="text-sm text-muted-foreground">
                 Drag and Drop <span className="text-muted-foreground">(or)</span>{" "}
                 <span className="text-secondary font-medium underline cursor-pointer">Choose Files</span>
@@ -460,17 +451,16 @@ const ApplyLoan = () => {
             </div>
 
             <div className="flex items-center gap-2 text-whatsapp mb-2">
-              <Shield className="h-5 w-5" />
+              <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
-      // Step 9: NRIC
       case 9:
         return (
-           <DocumentUploadStep
+          <DocumentUploadStep
             title="NRIC"
             description="Upload a clear photo of the front and back of your NRIC (MyKad)."
             icon={CreditCard}
@@ -480,7 +470,6 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 10: Driving License
       case 10:
         return (
           <DocumentUploadStep
@@ -493,7 +482,6 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 11: Latest Payslip
       case 11:
         return (
           <DocumentUploadStep
@@ -506,7 +494,6 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 12: Latest Bank Statement
       case 12:
         return (
           <DocumentUploadStep
@@ -519,13 +506,12 @@ const ApplyLoan = () => {
           />
         );
 
-      // Step 13: Declaration Of Disclosure
       case 13:
         return (
-          <>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+          <fieldset>
+            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Declaration Of Disclosure
-            </h1>
+            </legend>
             <MandatoryNotice />
             <div className="space-y-4">
               <div className="bg-muted rounded-xl p-4 text-sm text-muted-foreground leading-relaxed">
@@ -551,7 +537,7 @@ const ApplyLoan = () => {
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" stepProgress={progressPercent} />
-          </>
+          </fieldset>
         );
 
       default:
@@ -561,13 +547,18 @@ const ApplyLoan = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEO
+        title="Apply for Car Loan - Carlo Malaysia"
+        description="Apply for a car loan in Malaysia with Carlo. Simple 5-minute online application with quick approval and competitive rates from major banks."
+        canonical="/loan-check"
+      />
       <Header />
 
       <main className="flex-1 py-8 md:py-12">
         <div className="container-carlo">
           <div className="max-w-2xl mx-auto">
             {/* Progress indicator */}
-            <div className="mb-8">
+            <div className="mb-8" role="progressbar" aria-valuenow={progressPercent} aria-valuemin={0} aria-valuemax={100} aria-label={`Application progress: ${progressPercent}%`}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm text-muted-foreground">{progressPercent}%</span>
                 <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
@@ -583,9 +574,9 @@ const ApplyLoan = () => {
             </div>
 
             {/* Main card */}
-            <div className="bg-card rounded-2xl shadow-lg border border-border p-6 md:p-8">
+            <section className="bg-card rounded-2xl shadow-lg border border-border p-6 md:p-8" aria-label={STEP_TITLES[currentStep]}>
               {renderStep()}
-            </div>
+            </section>
           </div>
         </div>
       </main>
