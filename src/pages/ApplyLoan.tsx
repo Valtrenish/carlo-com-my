@@ -470,12 +470,13 @@ const ApplyLoan = () => {
       // Step 9: NRIC
       case 9:
         return (
-          <DocumentUploadStep
+           <DocumentUploadStep
             title="NRIC"
             description="Upload a clear photo of the front and back of your NRIC (MyKad)."
             icon={CreditCard}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
