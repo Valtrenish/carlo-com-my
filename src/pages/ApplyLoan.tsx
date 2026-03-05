@@ -428,7 +428,7 @@ const ApplyLoan = () => {
               <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
               <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
