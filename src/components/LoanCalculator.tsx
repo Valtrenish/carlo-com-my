@@ -14,14 +14,13 @@ const LoanCalculator = () => {
 
   const calculateMonthlyPayment = useCallback(() => {
     const principal = carPrice - downPayment;
-    const monthlyRate = interestRate / 100 / 12;
-    const numberOfPayments = loanPeriod * 12;
+    const numberOfMonths = loanPeriod * 12;
     
-    if (principal <= 0) return 0;
+    if (principal <= 0 || numberOfMonths <= 0) return 0;
     
-    const monthlyPayment =
-      (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) /
-      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    const totalInterest = principal * (interestRate / 100) * loanPeriod;
+    const totalAmount = principal + totalInterest;
+    const monthlyPayment = totalAmount / numberOfMonths;
     
     return isNaN(monthlyPayment) ? 0 : monthlyPayment;
   }, [carPrice, downPayment, interestRate, loanPeriod]);
