@@ -39,16 +39,19 @@ const StepButtons = ({
   showBack = true,
   showSaveDraft = true,
   nextLabel = "Next",
+  stepProgress = 0,
 }: {
   onBack?: () => void;
   onNext: () => void;
   showBack?: boolean;
   showSaveDraft?: boolean;
   nextLabel?: string;
+  stepProgress?: number;
 }) => (
   <div className="flex flex-col sm:flex-row gap-3 mt-8">
     {showBack && (
       <Button
+        id={`btn-loan-back-${stepProgress}pct`}
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
         onClick={onBack}
@@ -58,6 +61,7 @@ const StepButtons = ({
     )}
     {showSaveDraft && (
       <Button
+        id={`btn-loan-save-draft-${stepProgress}pct`}
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
       >
@@ -65,6 +69,7 @@ const StepButtons = ({
       </Button>
     )}
     <Button
+      id={`btn-loan-next-${stepProgress}pct`}
       className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground"
       onClick={onNext}
     >

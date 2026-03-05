@@ -88,6 +88,7 @@ const Footer = () => {
               Need Help? Chat with us on WhatsApp for quick assistance.
             </p>
             <a
+              id="btn-footer-whatsapp"
               href="https://wa.me/601126817101"
               target="_blank"
               rel="noopener noreferrer"
