@@ -354,7 +354,7 @@ const ApplyLoan = () => {
                 </select>
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
