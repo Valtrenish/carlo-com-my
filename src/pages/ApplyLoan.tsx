@@ -550,7 +550,7 @@ const ApplyLoan = () => {
                 </Label>
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" />
+            <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" stepProgress={progressPercent} />
           </>
         );
 
