@@ -502,6 +502,7 @@ const ApplyLoan = () => {
             icon={FileText}
             onBack={goBack}
             onNext={goNext}
+            stepProgress={progressPercent}
           />
         );
 
