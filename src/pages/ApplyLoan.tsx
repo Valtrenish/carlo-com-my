@@ -314,7 +314,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} />
+            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
           </>
         );
 
