@@ -37,8 +37,9 @@ const Testimonials = () => {
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-carlo-orange">
                   <img
                     src={testimonial.image}
-                    alt={testimonial.name}
+                    alt={`${testimonial.name} from ${testimonial.location} - Carlo customer testimonial`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="font-semibold text-carlo-orange text-lg mb-1">

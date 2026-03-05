@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-carlo-dark text-secondary-foreground">
+    <footer id="contact" className="bg-carlo-dark text-secondary-foreground" role="contentinfo">
       {/* Social links bar */}
       <div className="border-b border-muted-foreground/20 py-4">
         <div className="container-carlo flex flex-wrap justify-center gap-6">
