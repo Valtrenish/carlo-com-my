@@ -167,7 +167,7 @@ const ApplyLoan = () => {
                 <span className="text-sm font-medium">Your data is kept secure and confidential</span>
               </div>
             </div>
-            <StepButtons onNext={goNext} showBack={false} />
+            <StepButtons onNext={goNext} showBack={false} stepProgress={progressPercent} />
           </>
         );
 
