@@ -49,6 +49,7 @@ const StepButtons = ({
   <div className="flex flex-col sm:flex-row gap-3 mt-8">
     {showBack && (
       <Button
+        id="btn-loan-back"
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
         onClick={onBack}
@@ -58,6 +59,7 @@ const StepButtons = ({
     )}
     {showSaveDraft && (
       <Button
+        id="btn-loan-save-draft"
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
       >
@@ -65,6 +67,7 @@ const StepButtons = ({
       </Button>
     )}
     <Button
+      id="btn-loan-next"
       className="flex-1 bg-secondary hover:bg-secondary/90 text-secondary-foreground"
       onClick={onNext}
     >

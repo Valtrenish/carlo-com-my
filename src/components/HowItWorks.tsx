@@ -60,6 +60,7 @@ const HowItWorks = () => {
 
         <div className="flex justify-center gap-2 mb-12">
           <button
+            id="btn-tab-how-to-buy"
             onClick={() => setActiveTab("buy")}
             className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
               activeTab === "buy"
@@ -70,6 +71,7 @@ const HowItWorks = () => {
             How To Buy
           </button>
           <button
+            id="btn-tab-loan-application"
             onClick={() => setActiveTab("loan")}
             className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
               activeTab === "loan"
