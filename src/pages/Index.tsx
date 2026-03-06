@@ -10,7 +10,7 @@ const loanCalculatorJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Carlo Car Loan Calculator",
-  url: "https://carlo-com-my.lovable.app/loan-calculator",
+  url: "https://carlo-com-my.lovable.app/carloancalculator",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: "Calculate your car loan monthly payments using Malaysia's flat rate formula. Get transparent pricing and quick approval.",
@@ -82,7 +82,7 @@ const Index = () => {
       <SEO
         title="Carlo - Easy Car Loan Calculator Malaysia"
         description="Get your dream car with Carlo's easy car loan calculator. Apply for car loans in Malaysia with transparent pricing and quick approval."
-        canonical="/loan-calculator"
+        canonical="/carloancalculator"
         jsonLd={combinedJsonLd as unknown as Record<string, unknown>}
       />
       <Header />
