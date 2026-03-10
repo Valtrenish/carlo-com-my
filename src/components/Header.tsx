@@ -11,7 +11,7 @@ const Header = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/carloancalculator" },
     { name: "Loan Check", href: "/loan-check" },
   ];
 
@@ -44,7 +44,7 @@ const Header = () => {
       <nav className="container-carlo py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/carloancalculator" className="flex items-center">
             <span className="text-2xl font-bold">
               <span className="text-carlo-blue">Car</span>
               <span className="text-carlo-orange">lo</span>
