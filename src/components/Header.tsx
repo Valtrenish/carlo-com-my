@@ -11,7 +11,7 @@ const Header = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/carloancalculator" },
     { name: "Loan Check", href: "/loan-check" },
   ];
 
