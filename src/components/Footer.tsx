@@ -73,8 +73,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/apply-loan" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
-                  Apply Loan
+                <Link to="/loan-check" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
+                  Loan Check
                 </Link>
               </li>
             </ul>
