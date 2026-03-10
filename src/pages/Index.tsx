@@ -10,7 +10,7 @@ const loanCalculatorJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Carlo Car Loan Calculator",
-  url: "https://carlo-com-my.lovable.app/carloancalculator",
+  url: "https://carlo-com-my.lovable.app/",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   description: "Calculate your car loan monthly payments using Malaysia's flat rate formula. Get transparent pricing and quick approval.",
