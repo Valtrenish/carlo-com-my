@@ -12,7 +12,7 @@ const Header = () => {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Contact", href: "#contact" },
+    { name: "Loan Check", href: "/loan-check" },
   ];
 
 
