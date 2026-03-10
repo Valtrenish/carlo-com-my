@@ -68,7 +68,7 @@ const Footer = () => {
             <div className="h-1 w-12 bg-carlo-orange mb-4"></div>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
+                <Link to="/carloancalculator" className="text-sm text-muted-foreground hover:text-secondary-foreground transition-colors">
                   Home
                 </Link>
               </li>

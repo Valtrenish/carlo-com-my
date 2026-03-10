@@ -82,7 +82,7 @@ const Index = () => {
       <SEO
         title="Carlo - Easy Car Loan Calculator Malaysia"
         description="Get your dream car with Carlo's easy car loan calculator. Apply for car loans in Malaysia with transparent pricing and quick approval."
-        canonical="/"
+        canonical="/carloancalculator"
         jsonLd={combinedJsonLd as unknown as Record<string, unknown>}
       />
       <Header />
