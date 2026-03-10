@@ -31,7 +31,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand column */}
           <div>
-            <Link to="/" className="flex items-center mb-4">
+            <Link to="/carloancalculator" className="flex items-center mb-4">
               <span className="text-2xl font-bold">
                 <span className="text-carlo-blue">Car</span>
                 <span className="text-carlo-orange">lo</span>
