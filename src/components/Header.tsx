@@ -46,10 +46,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/carloancalculator" className="flex items-center">
-            <span className="text-2xl font-bold">
-              <span className="text-carlo-blue">Car</span>
-              <span className="text-carlo-orange">lo</span>
-            </span>
+            <img src={carloLogo} alt="Carlo" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

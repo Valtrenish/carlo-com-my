@@ -33,10 +33,7 @@ const Footer = () => {
           {/* Brand column */}
           <div>
             <Link to="/carloancalculator" className="flex items-center mb-4">
-              <span className="text-2xl font-bold">
-                <span className="text-carlo-blue">Car</span>
-                <span className="text-carlo-orange">lo</span>
-              </span>
+              <img src={carloLogo} alt="Carlo" className="h-8 w-auto" />
             </Link>
             <p className="text-sm text-muted-foreground mb-2">Product by <span className="font-semibold">elfo</span></p>
             <p className="text-sm text-muted-foreground mb-6">
