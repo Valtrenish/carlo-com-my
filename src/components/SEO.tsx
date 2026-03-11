@@ -6,6 +6,7 @@ interface SEOProps {
   canonical: string;
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
+  favicon?: string;
 }
 
 const SITE_URL = "https://carlo-com-my.lovable.app";
