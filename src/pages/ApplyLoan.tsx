@@ -349,14 +349,17 @@ const ApplyLoan = () => {
               </div>
               <div>
                 <Label htmlFor="loan-period" className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
-                <Input
+                <select
                   id="loan-period"
-                  className={`mt-1 ${errorClass("loanPeriod")}`}
-                  placeholder="Enter Amount"
-                  type="number"
                   value={formData.loanPeriod}
                   onChange={(e) => updateField("loanPeriod", e.target.value)}
-                />
+                  className={`mt-1 w-full h-10 rounded-md border bg-background px-3 py-2 text-sm ${errorClass("loanPeriod") || "border-input"}`}
+                >
+                  <option value="">Select Loan Period</option>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <option key={i} value={String(i)}>{i} {i === 1 ? "Year" : "Years"}</option>
+                  ))}
+                </select>
                 <FieldError message={errors.loanPeriod} />
               </div>
               <Button id={`btn-loan-update-amount-${progressPercent}pct`} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
