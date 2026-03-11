@@ -84,6 +84,7 @@ const Index = () => {
         description="Get your dream car with Carlo's easy car loan calculator. Apply for car loans in Malaysia with transparent pricing and quick approval."
         canonical="/carloancalculator"
         jsonLd={combinedJsonLd as unknown as Record<string, unknown>}
+        favicon="/favicon-blue.png"
       />
       <Header />
       <main className="flex-1">

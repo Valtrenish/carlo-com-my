@@ -662,6 +662,7 @@ const ApplyLoan = () => {
         title="Apply for Car Loan - Carlo Malaysia"
         description="Apply for a car loan in Malaysia with Carlo. Simple 5-minute online application with quick approval and competitive rates from major banks."
         canonical="/loan-check"
+        favicon="/favicon-orange.png"
       />
       <Header />
 
