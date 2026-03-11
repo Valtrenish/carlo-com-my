@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail } from "lucide-react";
+import carloLogo from "@/assets/carlo-logo.png";
 
 const Footer = () => {
   return (
