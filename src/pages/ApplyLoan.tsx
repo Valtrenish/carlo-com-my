@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Shield, AlertCircle } from "lucide-react";
+import { Shield, AlertCircle, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -187,9 +187,19 @@ const ApplyLoan = () => {
     if (currentStep > 0) setCurrentStep(currentStep - 1);
   };
 
+  const buildFormSummary = () => {
+    return `Loan Application Details\n\nPurpose: ${formData.purpose}\nRefinance: ${formData.refinance}\nDownpayment: RM ${formData.downpayment}\nLoan Period: ${formData.loanPeriod} Years\n\nFull Name: ${formData.fullName}\nNRIC: ${formData.nricNumber}\nMobile: ${formData.mobileNumber}\nEmail: ${formData.emailAddress}\n\nCity: ${formData.city}\nState: ${formData.state}\n\nOccupation: ${formData.occupation}\nLength of Service: ${formData.serviceLength}\nEmployer: ${formData.employer}\n\nDeclaration Agreed: ${formData.declarationAgreed ? "Yes" : "No"}`;
+  };
+
   const saveDraft = () => {
     localStorage.setItem(DRAFT_KEY, JSON.stringify({ formData, currentStep }));
     toast({ title: "Draft saved", description: "Your progress has been saved. You can continue later." });
+
+    if (currentStep === 7) {
+      const subject = encodeURIComponent("Loan Application - " + formData.fullName);
+      const body = encodeURIComponent(buildFormSummary());
+      window.open(`mailto:sales@carlo.com.my?subject=${subject}&body=${body}`, "_blank");
+    }
   };
 
   const errorClass = (field: keyof FormData) =>
@@ -349,14 +359,17 @@ const ApplyLoan = () => {
               </div>
               <div>
                 <Label htmlFor="loan-period" className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
-                <Input
+                <select
                   id="loan-period"
-                  className={`mt-1 ${errorClass("loanPeriod")}`}
-                  placeholder="Enter Amount"
-                  type="number"
                   value={formData.loanPeriod}
                   onChange={(e) => updateField("loanPeriod", e.target.value)}
-                />
+                  className={`mt-1 w-full h-10 rounded-md border bg-background px-3 py-2 text-sm ${errorClass("loanPeriod") || "border-input"}`}
+                >
+                  <option value="">Select Loan Period</option>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <option key={i} value={String(i)}>{i} {i === 1 ? "Year" : "Years"}</option>
+                  ))}
+                </select>
                 <FieldError message={errors.loanPeriod} />
               </div>
               <Button id={`btn-loan-update-amount-${progressPercent}pct`} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
@@ -589,7 +602,52 @@ const ApplyLoan = () => {
                 <FieldError message={errors.declarationAgreed} />
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} nextLabel="Submit Application" stepProgress={progressPercent} />
+            <div className="bg-muted/50 rounded-xl p-4 mt-6 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Need help with your documents? Chat Directly with Carlo Loan Agent on{" "}
+                <a
+                  href="https://wa.me/601126817101"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-whatsapp font-semibold underline"
+                >
+                  WhatsApp
+                </a>{" "}
+                for a seamless submission process and real-time updates on your loan status.
+              </p>
+            </div>
+
+            <nav className="flex flex-col sm:flex-row gap-3 mt-8" aria-label="Form navigation">
+              <Button
+                variant="outline"
+                className="flex-1 border-border text-foreground hover:bg-muted"
+                onClick={goBack}
+              >
+                Back
+              </Button>
+              <Button
+                variant="outline"
+                className="flex-1 border-border text-foreground hover:bg-muted"
+                onClick={saveDraft}
+              >
+                Save Draft
+              </Button>
+              <a
+                href="https://wa.me/601126817101"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+                onClick={() => {
+                  if (!validateStep()) return;
+                  localStorage.removeItem(DRAFT_KEY);
+                }}
+              >
+                <Button className="w-full bg-whatsapp hover:bg-whatsapp/90 text-white gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Chat on WhatsApp
+                </Button>
+              </a>
+            </nav>
           </fieldset>
         );
 
