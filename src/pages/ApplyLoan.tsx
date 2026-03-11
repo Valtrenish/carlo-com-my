@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
-const TOTAL_STEPS = 14;
+const TOTAL_STEPS = 8;
 
 const STEP_TITLES = [
   "Read This, It's Important",
@@ -18,12 +18,6 @@ const STEP_TITLES = [
   "Tell Us About Yourself",
   "Send Us Your Location",
   "What You Do For Work",
-  "Time For A Selfie",
-  "Selfie Verification",
-  "NRIC",
-  "Driving License",
-  "Latest Payslip",
-  "Latest Bank Statement",
   "Declaration Of Disclosure",
 ];
 
