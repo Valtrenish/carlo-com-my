@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Clock, Menu, X } from "lucide-react";
+import carloLogo from "@/assets/carlo-logo.png";
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "601126817101";
