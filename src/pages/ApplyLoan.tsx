@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Shield, AlertCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
 const TOTAL_STEPS = 8;
+const DRAFT_KEY = "carlo-loan-draft";
 
 const STEP_TITLES = [
   "Read This, It's Important",
@@ -21,6 +23,51 @@ const STEP_TITLES = [
   "Declaration Of Disclosure",
 ];
 
+interface FormData {
+  refinance: string;
+  purpose: string;
+  downpayment: string;
+  loanPeriod: string;
+  fullName: string;
+  nricNumber: string;
+  mobileNumber: string;
+  emailAddress: string;
+  city: string;
+  state: string;
+  occupation: string;
+  serviceLength: string;
+  employer: string;
+  declarationAgreed: boolean;
+}
+
+const initialFormData: FormData = {
+  refinance: "",
+  purpose: "",
+  downpayment: "",
+  loanPeriod: "",
+  fullName: "",
+  nricNumber: "",
+  mobileNumber: "",
+  emailAddress: "",
+  city: "",
+  state: "",
+  occupation: "private",
+  serviceLength: "less-1",
+  employer: "",
+  declarationAgreed: false,
+};
+
+const REQUIRED_FIELDS: Record<number, (keyof FormData)[]> = {
+  0: [],
+  1: ["purpose"],
+  2: [],
+  3: ["downpayment", "loanPeriod"],
+  4: ["fullName", "nricNumber", "mobileNumber", "emailAddress"],
+  5: ["city", "state"],
+  6: ["occupation", "serviceLength", "employer"],
+  7: ["declarationAgreed"],
+};
+
 const MandatoryNotice = () => (
   <div className="flex items-center gap-2 text-destructive mb-6" role="alert">
     <AlertCircle className="h-4 w-4" aria-hidden="true" />
@@ -28,9 +75,13 @@ const MandatoryNotice = () => (
   </div>
 );
 
+const FieldError = ({ message }: { message?: string }) =>
+  message ? <p className="text-destructive text-xs mt-1">{message}</p> : null;
+
 const StepButtons = ({
   onBack,
   onNext,
+  onSaveDraft,
   showBack = true,
   showSaveDraft = true,
   nextLabel = "Next",
@@ -38,6 +89,7 @@ const StepButtons = ({
 }: {
   onBack?: () => void;
   onNext: () => void;
+  onSaveDraft?: () => void;
   showBack?: boolean;
   showSaveDraft?: boolean;
   nextLabel?: string;
@@ -59,6 +111,7 @@ const StepButtons = ({
         id={`btn-loan-save-draft-${stepProgress}pct`}
         variant="outline"
         className="flex-1 border-border text-foreground hover:bg-muted"
+        onClick={onSaveDraft}
       >
         Save Draft
       </Button>
@@ -75,17 +128,72 @@ const StepButtons = ({
 
 
 const ApplyLoan = () => {
+  const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+
+  // Load draft on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(DRAFT_KEY);
+      if (saved) {
+        const draft = JSON.parse(saved);
+        if (draft.formData) setFormData(draft.formData);
+        if (typeof draft.currentStep === "number") setCurrentStep(draft.currentStep);
+        toast({ title: "Draft restored", description: "Your previous progress has been loaded." });
+      }
+    } catch {
+      // ignore corrupt data
+    }
+  }, []);
 
   const progressPercent = Math.round(((currentStep + 1) / TOTAL_STEPS) * 100);
 
+  const updateField = (field: keyof FormData, value: string | boolean) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error when user types
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+  };
+
+  const validateStep = (): boolean => {
+    const required = REQUIRED_FIELDS[currentStep] || [];
+    const newErrors: Partial<Record<keyof FormData, string>> = {};
+    for (const field of required) {
+      const value = formData[field];
+      if (field === "declarationAgreed") {
+        if (!value) newErrors[field] = "You must agree to the declaration";
+      } else if (!value || (typeof value === "string" && value.trim() === "")) {
+        newErrors[field] = "This field is required";
+      }
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const goNext = () => {
+    if (!validateStep()) return;
     if (currentStep < TOTAL_STEPS - 1) setCurrentStep(currentStep + 1);
   };
 
   const goBack = () => {
+    setErrors({});
     if (currentStep > 0) setCurrentStep(currentStep - 1);
   };
+
+  const saveDraft = () => {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ formData, currentStep }));
+    toast({ title: "Draft saved", description: "Your progress has been saved. You can continue later." });
+  };
+
+  const errorClass = (field: keyof FormData) =>
+    errors[field] ? "border-destructive" : "";
 
   const renderStep = () => {
     switch (currentStep) {
@@ -129,7 +237,7 @@ const ApplyLoan = () => {
                 <span className="text-sm font-medium">Your data is kept secure and confidential</span>
               </div>
             </div>
-            <StepButtons onNext={goNext} showBack={false} stepProgress={progressPercent} />
+            <StepButtons onNext={goNext} onSaveDraft={saveDraft} showBack={false} stepProgress={progressPercent} />
           </article>
         );
 
@@ -143,7 +251,7 @@ const ApplyLoan = () => {
             <div className="space-y-4">
               <div>
                 <Label className="text-sm font-medium text-foreground">Refinance</Label>
-                <RadioGroup className="mt-2">
+                <RadioGroup className="mt-2" value={formData.refinance} onValueChange={(v) => updateField("refinance", v)}>
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="yes" id="refinance-yes" />
                     <Label htmlFor="refinance-yes" className="text-sm">Yes</Label>
@@ -156,12 +264,18 @@ const ApplyLoan = () => {
               </div>
               <div>
                 <Label htmlFor="purpose" className="text-sm font-medium text-foreground">Purpose of Application *</Label>
-                <select id="purpose" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <select
+                  id="purpose"
+                  value={formData.purpose}
+                  onChange={(e) => updateField("purpose", e.target.value)}
+                  className={`mt-1 w-full h-10 rounded-md border bg-background px-3 py-2 text-sm ${errorClass("purpose") || "border-input"}`}
+                >
                   <option value="">Select purpose</option>
                   <option value="personal">Personal Use</option>
                   <option value="business">Business Use</option>
                   <option value="commercial">Commercial Use</option>
                 </select>
+                <FieldError message={errors.purpose} />
               </div>
             </div>
             <StepButtons onBack={goBack} onNext={goNext} showSaveDraft={false} stepProgress={progressPercent} />
@@ -207,7 +321,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
+            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} stepProgress={progressPercent} />
           </article>
         );
 
@@ -223,11 +337,27 @@ const ApplyLoan = () => {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="downpayment" className="text-sm font-medium text-foreground">Downpayment (RM) *</Label>
-                <Input id="downpayment" className="mt-1" placeholder="Enter Amount" type="number" />
+                <Input
+                  id="downpayment"
+                  className={`mt-1 ${errorClass("downpayment")}`}
+                  placeholder="Enter Amount"
+                  type="number"
+                  value={formData.downpayment}
+                  onChange={(e) => updateField("downpayment", e.target.value)}
+                />
+                <FieldError message={errors.downpayment} />
               </div>
               <div>
                 <Label htmlFor="loan-period" className="text-sm font-medium text-foreground">Loan Period (Years) *</Label>
-                <Input id="loan-period" className="mt-1" placeholder="Enter Amount" type="number" />
+                <Input
+                  id="loan-period"
+                  className={`mt-1 ${errorClass("loanPeriod")}`}
+                  placeholder="Enter Amount"
+                  type="number"
+                  value={formData.loanPeriod}
+                  onChange={(e) => updateField("loanPeriod", e.target.value)}
+                />
+                <FieldError message={errors.loanPeriod} />
               </div>
               <Button id={`btn-loan-update-amount-${progressPercent}pct`} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2">
                 Update Amount
@@ -237,7 +367,7 @@ const ApplyLoan = () => {
               <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
+            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} stepProgress={progressPercent} />
           </fieldset>
         );
 
@@ -253,26 +383,59 @@ const ApplyLoan = () => {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="fullName" className="text-sm font-medium text-foreground">Full Name as per NRIC *</Label>
-                <Input id="fullName" className="mt-1" placeholder="Enter Full Name" autoComplete="name" />
+                <Input
+                  id="fullName"
+                  className={`mt-1 ${errorClass("fullName")}`}
+                  placeholder="Enter Full Name"
+                  autoComplete="name"
+                  value={formData.fullName}
+                  onChange={(e) => updateField("fullName", e.target.value)}
+                />
+                <FieldError message={errors.fullName} />
               </div>
               <div>
                 <Label htmlFor="nricNumber" className="text-sm font-medium text-foreground">NRIC Number *</Label>
-                <Input id="nricNumber" className="mt-1" placeholder="Enter NRIC Number" />
+                <Input
+                  id="nricNumber"
+                  className={`mt-1 ${errorClass("nricNumber")}`}
+                  placeholder="Enter NRIC Number"
+                  value={formData.nricNumber}
+                  onChange={(e) => updateField("nricNumber", e.target.value)}
+                />
+                <FieldError message={errors.nricNumber} />
               </div>
               <div>
                 <Label htmlFor="mobileNumber" className="text-sm font-medium text-foreground">Mobile Number *</Label>
-                <Input id="mobileNumber" className="mt-1" placeholder="Enter Mobile Number" type="tel" autoComplete="tel" />
+                <Input
+                  id="mobileNumber"
+                  className={`mt-1 ${errorClass("mobileNumber")}`}
+                  placeholder="Enter Mobile Number"
+                  type="tel"
+                  autoComplete="tel"
+                  value={formData.mobileNumber}
+                  onChange={(e) => updateField("mobileNumber", e.target.value)}
+                />
+                <FieldError message={errors.mobileNumber} />
               </div>
               <div>
                 <Label htmlFor="emailAddress" className="text-sm font-medium text-foreground">Email Address *</Label>
-                <Input id="emailAddress" className="mt-1" type="email" placeholder="Enter Email Address" autoComplete="email" />
+                <Input
+                  id="emailAddress"
+                  className={`mt-1 ${errorClass("emailAddress")}`}
+                  type="email"
+                  placeholder="Enter Email Address"
+                  autoComplete="email"
+                  value={formData.emailAddress}
+                  onChange={(e) => updateField("emailAddress", e.target.value)}
+                />
+                <FieldError message={errors.emailAddress} />
               </div>
             </div>
             <div className="flex items-center gap-2 text-whatsapp mt-6">
               <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
+            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} stepProgress={progressPercent} />
           </fieldset>
         );
 
@@ -286,11 +449,24 @@ const ApplyLoan = () => {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="city" className="text-sm font-medium text-foreground">City *</Label>
-                <Input id="city" className="mt-1" placeholder="e.g. Kuala Lumpur" autoComplete="address-level2" />
+                <Input
+                  id="city"
+                  className={`mt-1 ${errorClass("city")}`}
+                  placeholder="e.g. Kuala Lumpur"
+                  autoComplete="address-level2"
+                  value={formData.city}
+                  onChange={(e) => updateField("city", e.target.value)}
+                />
+                <FieldError message={errors.city} />
               </div>
               <div>
                 <Label htmlFor="state" className="text-sm font-medium text-foreground">State *</Label>
-                <select id="state" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <select
+                  id="state"
+                  value={formData.state}
+                  onChange={(e) => updateField("state", e.target.value)}
+                  className={`mt-1 w-full h-10 rounded-md border bg-background px-3 py-2 text-sm ${errorClass("state") || "border-input"}`}
+                >
                   <option value="">Select state</option>
                   <option value="johor">Johor</option>
                   <option value="kedah">Kedah</option>
@@ -309,9 +485,10 @@ const ApplyLoan = () => {
                   <option value="putrajaya">W.P. Putrajaya</option>
                   <option value="labuan">W.P. Labuan</option>
                 </select>
+                <FieldError message={errors.state} />
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
+            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} stepProgress={progressPercent} />
           </fieldset>
         );
 
@@ -327,33 +504,53 @@ const ApplyLoan = () => {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="occupation" className="text-sm font-bold text-foreground">Occupation <span className="text-destructive">*</span></Label>
-                <select id="occupation" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <select
+                  id="occupation"
+                  value={formData.occupation}
+                  onChange={(e) => updateField("occupation", e.target.value)}
+                  className={`mt-1 w-full h-10 rounded-md border bg-background px-3 py-2 text-sm ${errorClass("occupation") || "border-input"}`}
+                >
                   <option value="private">Private</option>
                   <option value="government">Government</option>
                   <option value="self-employed">Self-Employed</option>
                   <option value="others">Others</option>
                 </select>
+                <FieldError message={errors.occupation} />
               </div>
               <div>
                 <Label htmlFor="service-length" className="text-sm font-bold text-foreground">Length Of Service <span className="text-destructive">*</span></Label>
-                <select id="service-length" className="mt-1 w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <select
+                  id="service-length"
+                  value={formData.serviceLength}
+                  onChange={(e) => updateField("serviceLength", e.target.value)}
+                  className={`mt-1 w-full h-10 rounded-md border bg-background px-3 py-2 text-sm ${errorClass("serviceLength") || "border-input"}`}
+                >
                   <option value="less-1">Less than 1 year</option>
                   <option value="1-3">1 - 3 years</option>
                   <option value="3-5">3 - 5 years</option>
                   <option value="5+">More than 5 years</option>
                 </select>
                 <p className="text-sm text-muted-foreground mt-1 italic">How long have you been working with your current employer.</p>
+                <FieldError message={errors.serviceLength} />
               </div>
               <div>
                 <Label htmlFor="employer" className="text-sm font-bold text-foreground">Employer Name <span className="text-destructive">*</span></Label>
-                <Input id="employer" className="mt-1" placeholder="Enter Employer Name" autoComplete="organization" />
+                <Input
+                  id="employer"
+                  className={`mt-1 ${errorClass("employer")}`}
+                  placeholder="Enter Employer Name"
+                  autoComplete="organization"
+                  value={formData.employer}
+                  onChange={(e) => updateField("employer", e.target.value)}
+                />
+                <FieldError message={errors.employer} />
               </div>
             </div>
             <div className="flex items-center gap-2 text-whatsapp mt-6">
               <Shield className="h-5 w-5" aria-hidden="true" />
               <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
+            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} stepProgress={progressPercent} />
           </fieldset>
         );
 
@@ -376,18 +573,23 @@ const ApplyLoan = () => {
                   I understand that any false or misleading information may result in the rejection of my application or cancellation of any approved loan.
                 </p>
               </div>
-              <div className="flex items-start gap-3">
-                <input
-                  type="checkbox"
-                  id="agree"
-                  className="mt-1 h-4 w-4 rounded border-input accent-secondary"
-                />
-                <Label htmlFor="agree" className="text-sm text-foreground">
-                  I agree to the above declaration and the Terms & Conditions *
-                </Label>
+              <div>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="agree"
+                    checked={formData.declarationAgreed}
+                    onChange={(e) => updateField("declarationAgreed", e.target.checked)}
+                    className={`mt-1 h-4 w-4 rounded accent-secondary ${errors.declarationAgreed ? "outline outline-2 outline-destructive" : "border-input"}`}
+                  />
+                  <Label htmlFor="agree" className="text-sm text-foreground">
+                    I agree to the above declaration and the Terms & Conditions *
+                  </Label>
+                </div>
+                <FieldError message={errors.declarationAgreed} />
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} nextLabel="Submit Application" stepProgress={progressPercent} />
+            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} nextLabel="Submit Application" stepProgress={progressPercent} />
           </fieldset>
         );
 
