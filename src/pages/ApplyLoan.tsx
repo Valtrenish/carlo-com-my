@@ -187,9 +187,19 @@ const ApplyLoan = () => {
     if (currentStep > 0) setCurrentStep(currentStep - 1);
   };
 
+  const buildFormSummary = () => {
+    return `Loan Application Details\n\nPurpose: ${formData.purpose}\nRefinance: ${formData.refinance}\nDownpayment: RM ${formData.downpayment}\nLoan Period: ${formData.loanPeriod} Years\n\nFull Name: ${formData.fullName}\nNRIC: ${formData.nricNumber}\nMobile: ${formData.mobileNumber}\nEmail: ${formData.emailAddress}\n\nCity: ${formData.city}\nState: ${formData.state}\n\nOccupation: ${formData.occupation}\nLength of Service: ${formData.serviceLength}\nEmployer: ${formData.employer}\n\nDeclaration Agreed: ${formData.declarationAgreed ? "Yes" : "No"}`;
+  };
+
   const saveDraft = () => {
     localStorage.setItem(DRAFT_KEY, JSON.stringify({ formData, currentStep }));
     toast({ title: "Draft saved", description: "Your progress has been saved. You can continue later." });
+
+    if (currentStep === 7) {
+      const subject = encodeURIComponent("Loan Application - " + formData.fullName);
+      const body = encodeURIComponent(buildFormSummary());
+      window.open(`mailto:sales@carlo.com.my?subject=${subject}&body=${body}`, "_blank");
+    }
   };
 
   const errorClass = (field: keyof FormData) =>
