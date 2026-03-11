@@ -602,7 +602,52 @@ const ApplyLoan = () => {
                 <FieldError message={errors.declarationAgreed} />
               </div>
             </div>
-            <StepButtons onBack={goBack} onNext={goNext} onSaveDraft={saveDraft} nextLabel="Submit Application" stepProgress={progressPercent} />
+            <div className="bg-muted/50 rounded-xl p-4 mt-6 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Need help with your documents? Chat Directly with Carlo Loan Agent on{" "}
+                <a
+                  href="https://wa.me/601126817101"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-whatsapp font-semibold underline"
+                >
+                  WhatsApp
+                </a>{" "}
+                for a seamless submission process and real-time updates on your loan status.
+              </p>
+            </div>
+
+            <nav className="flex flex-col sm:flex-row gap-3 mt-8" aria-label="Form navigation">
+              <Button
+                variant="outline"
+                className="flex-1 border-border text-foreground hover:bg-muted"
+                onClick={goBack}
+              >
+                Back
+              </Button>
+              <Button
+                variant="outline"
+                className="flex-1 border-border text-foreground hover:bg-muted"
+                onClick={saveDraft}
+              >
+                Save Draft
+              </Button>
+              <a
+                href="https://wa.me/601126817101"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+                onClick={() => {
+                  if (!validateStep()) return;
+                  localStorage.removeItem(DRAFT_KEY);
+                }}
+              >
+                <Button className="w-full bg-whatsapp hover:bg-whatsapp/90 text-white gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Chat on WhatsApp
+                </Button>
+              </a>
+            </nav>
           </fieldset>
         );
 
