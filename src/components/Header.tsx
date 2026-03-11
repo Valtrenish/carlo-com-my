@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Clock, Menu, X } from "lucide-react";
-import carloLogo from "@/assets/carlo-logo.png";
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "601126817101";
@@ -46,7 +45,10 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/carloancalculator" className="flex items-center">
-            <img src={carloLogo} alt="Carlo" className="h-8 w-auto" />
+            <span className="text-2xl font-bold">
+              <span className="text-carlo-blue">Car</span>
+              <span className="text-carlo-orange">lo</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
