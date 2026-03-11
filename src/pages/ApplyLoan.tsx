@@ -73,38 +73,6 @@ const StepButtons = ({
   </nav>
 );
 
-const DocumentUploadStep = ({
-  title,
-  description,
-  icon: Icon,
-  onBack,
-  onNext,
-  stepProgress = 0,
-}: {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  onBack: () => void;
-  onNext: () => void;
-  stepProgress?: number;
-}) => (
-  <fieldset>
-    <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</legend>
-    <div className="flex flex-col items-center justify-center py-8">
-      <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
-        <Icon className="h-10 w-10 text-carlo-orange" aria-hidden="true" />
-      </div>
-      <p className="text-muted-foreground text-sm text-center mb-6">{description}</p>
-    </div>
-    <MandatoryNotice />
-    <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors" role="button" tabIndex={0} aria-label={`Upload ${title} document`}>
-      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
-      <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
-      <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
-    </div>
-    <StepButtons onBack={onBack} onNext={onNext} stepProgress={stepProgress} />
-  </fieldset>
-);
 
 const ApplyLoan = () => {
   const [currentStep, setCurrentStep] = useState(0);
