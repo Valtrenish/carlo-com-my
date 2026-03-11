@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Shield, Upload, Camera, FileText, CreditCard, AlertCircle } from "lucide-react";
+import { Shield, AlertCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
-const TOTAL_STEPS = 14;
+const TOTAL_STEPS = 8;
 
 const STEP_TITLES = [
   "Read This, It's Important",
@@ -18,12 +18,6 @@ const STEP_TITLES = [
   "Tell Us About Yourself",
   "Send Us Your Location",
   "What You Do For Work",
-  "Time For A Selfie",
-  "Selfie Verification",
-  "NRIC",
-  "Driving License",
-  "Latest Payslip",
-  "Latest Bank Statement",
   "Declaration Of Disclosure",
 ];
 
@@ -79,38 +73,6 @@ const StepButtons = ({
   </nav>
 );
 
-const DocumentUploadStep = ({
-  title,
-  description,
-  icon: Icon,
-  onBack,
-  onNext,
-  stepProgress = 0,
-}: {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  onBack: () => void;
-  onNext: () => void;
-  stepProgress?: number;
-}) => (
-  <fieldset>
-    <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">{title}</legend>
-    <div className="flex flex-col items-center justify-center py-8">
-      <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
-        <Icon className="h-10 w-10 text-carlo-orange" aria-hidden="true" />
-      </div>
-      <p className="text-muted-foreground text-sm text-center mb-6">{description}</p>
-    </div>
-    <MandatoryNotice />
-    <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors" role="button" tabIndex={0} aria-label={`Upload ${title} document`}>
-      <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
-      <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
-      <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
-    </div>
-    <StepButtons onBack={onBack} onNext={onNext} stepProgress={stepProgress} />
-  </fieldset>
-);
 
 const ApplyLoan = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -396,117 +358,6 @@ const ApplyLoan = () => {
         );
 
       case 7:
-        return (
-          <fieldset>
-            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">Time For A Selfie</legend>
-            <div className="flex flex-col items-center justify-center py-4">
-              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-6">
-                <Camera className="h-10 w-10 text-carlo-orange" aria-hidden="true" />
-              </div>
-            </div>
-
-            <div className="bg-accent/30 border border-accent rounded-xl p-5 mb-6">
-              <h3 className="text-base font-bold text-foreground mb-3">Quick Guide</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
-                <li>Take your photo in a well-lit room</li>
-                <li>Choose the best photo quality that your device camera has</li>
-                <li>Hold up the identification document (ID) next to your face like in the sample photo below</li>
-                <li>Please ensure that your face and ID details can be clearly seen in your photo</li>
-              </ul>
-            </div>
-
-            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors" role="button" tabIndex={0} aria-label="Upload selfie photo">
-              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
-              <p className="text-sm text-muted-foreground">Click or drag file to upload</p>
-              <p className="text-xs text-muted-foreground mt-1">JPG, PNG or PDF (max 5MB)</p>
-            </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </fieldset>
-        );
-
-      case 8:
-        return (
-          <fieldset>
-            <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
-              Selfie Verification
-            </legend>
-            <div className="flex flex-col items-center justify-center py-6">
-              <div className="w-40 h-40 rounded-2xl bg-muted/50 border border-border flex items-center justify-center mb-6 relative">
-                <Camera className="h-16 w-16 text-carlo-orange" aria-hidden="true" />
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-whatsapp flex items-center justify-center">
-                  <svg className="w-5 h-5 text-whatsapp-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-secondary transition-colors mb-6" role="button" tabIndex={0} aria-label="Upload selfie verification photo">
-              <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
-              <p className="text-sm text-muted-foreground">
-                Drag and Drop <span className="text-muted-foreground">(or)</span>{" "}
-                <span className="text-secondary font-medium underline cursor-pointer">Choose Files</span>
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">Supported Files: PNG & JPG. File Size: &lt;1 MB</p>
-            </div>
-
-            <div className="flex items-center gap-2 text-whatsapp mb-2">
-              <Shield className="h-5 w-5" aria-hidden="true" />
-              <span className="text-sm font-medium italic">Your data is kept secure and confidential</span>
-            </div>
-            <StepButtons onBack={goBack} onNext={goNext} stepProgress={progressPercent} />
-          </fieldset>
-        );
-
-      case 9:
-        return (
-          <DocumentUploadStep
-            title="NRIC"
-            description="Upload a clear photo of the front and back of your NRIC (MyKad)."
-            icon={CreditCard}
-            onBack={goBack}
-            onNext={goNext}
-            stepProgress={progressPercent}
-          />
-        );
-
-      case 10:
-        return (
-          <DocumentUploadStep
-            title="Driving License"
-            description="Upload a clear photo of your valid driving license (front and back)."
-            icon={CreditCard}
-            onBack={goBack}
-            onNext={goNext}
-            stepProgress={progressPercent}
-          />
-        );
-
-      case 11:
-        return (
-          <DocumentUploadStep
-            title="Latest Payslip"
-            description="Upload your latest payslip (not older than 3 months)."
-            icon={FileText}
-            onBack={goBack}
-            onNext={goNext}
-            stepProgress={progressPercent}
-          />
-        );
-
-      case 12:
-        return (
-          <DocumentUploadStep
-            title="Latest Bank Statement"
-            description="Upload your latest 3 months bank statement."
-            icon={FileText}
-            onBack={goBack}
-            onNext={goNext}
-            stepProgress={progressPercent}
-          />
-        );
-
-      case 13:
         return (
           <fieldset>
             <legend className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
