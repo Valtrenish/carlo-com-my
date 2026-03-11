@@ -20,6 +20,7 @@ const SEO = ({ title, description, canonical, jsonLd, noindex, favicon }: SEOPro
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={fullUrl} />
+      {favicon && <link rel="icon" href={favicon} type="image/png" />}
       {noindex && <meta name="robots" content="noindex, nofollow" />}
 
       <meta property="og:type" content="website" />
