@@ -1,16 +1,27 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Play, Camera, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 
-const thumbnails = [
-  { icon: Play, gradient: "from-secondary to-secondary/70" },
-  { icon: Camera, gradient: "from-primary to-primary/70" },
-  { icon: Play, gradient: "from-carlo-dark to-carlo-dark/70" },
-  { icon: Camera, gradient: "from-secondary to-primary" },
-  { icon: Play, gradient: "from-primary to-carlo-dark" },
-  { icon: Camera, gradient: "from-carlo-dark to-secondary" },
+const instagramPosts = [
+  "https://www.instagram.com/p/DVfWWs9CfRO/",
+  "https://www.instagram.com/carlomalaysia/reel/DVfVvRtkgUp/",
+  "https://www.instagram.com/carlomalaysia/reel/DVGNrIrkofh/",
 ];
 
 const InstagramGallery = () => {
+  useEffect(() => {
+    // Load Instagram embed script
+    if (!document.getElementById("instagram-embed-script")) {
+      const script = document.createElement("script");
+      script.id = "instagram-embed-script";
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    } else if ((window as any).instgrm) {
+      (window as any).instgrm.Embeds.process();
+    }
+  }, []);
+
   return (
     <section className="py-16 md:py-24 bg-muted">
       <div className="container-carlo">
@@ -21,22 +32,24 @@ const InstagramGallery = () => {
           Follow Us on Instagram
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-          {thumbnails.map((thumb, index) => (
-            <a
-              key={index}
-              href="https://www.instagram.com/carlomalaysia/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${thumb.gradient} opacity-80 group-hover:opacity-100 transition-opacity`} />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-background/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <thumb.icon className="text-primary-foreground" size={24} />
-                </div>
-              </div>
-            </a>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {instagramPosts.map((url, index) => (
+            <div key={index} className="flex justify-center">
+              <blockquote
+                className="instagram-media"
+                data-instgrm-permalink={url}
+                data-instgrm-version="14"
+                style={{
+                  background: "hsl(var(--card))",
+                  border: 0,
+                  borderRadius: "12px",
+                  margin: 0,
+                  maxWidth: "540px",
+                  minWidth: "280px",
+                  width: "100%",
+                }}
+              />
+            </div>
           ))}
         </div>
 
