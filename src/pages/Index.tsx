@@ -1,8 +1,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JapanImportHero from "@/components/JapanImportHero";
 import LoanCalculator from "@/components/LoanCalculator";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
+import InstagramGallery from "@/components/InstagramGallery";
 import FAQ from "@/components/FAQ";
 import SEO from "@/components/SEO";
 
@@ -88,9 +90,11 @@ const Index = () => {
       />
       <Header />
       <main className="flex-1">
+        <JapanImportHero />
         <LoanCalculator />
         <HowItWorks />
         <Testimonials />
+        <InstagramGallery />
         <FAQ />
       </main>
       <Footer />
