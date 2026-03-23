@@ -96,32 +96,6 @@ const JapanImportHero = () => {
               </a>
             ))}
           </div>
-
-          {/* Loan Summary */}
-          <div className="bg-card rounded-2xl p-6 md:p-8 shadow-xl border border-border max-w-lg mx-auto text-center">
-            <p className="text-sm font-semibold text-muted-foreground mb-1">From</p>
-            <p className="text-3xl md:text-4xl font-bold text-primary mb-4">RM 1,250/month</p>
-            <div className="space-y-2 mb-6 text-sm">
-              <div className="flex justify-between text-foreground">
-                <span>Loan Amount</span>
-                <span className="font-semibold">RM 90,000</span>
-              </div>
-              <div className="flex justify-between text-foreground">
-                <span>Interest</span>
-                <span className="font-semibold">RM 8,500</span>
-              </div>
-              <div className="border-t border-border pt-2 flex justify-between text-foreground font-bold">
-                <span>Total</span>
-                <span>RM 98,500</span>
-              </div>
-            </div>
-            <Button asChild size="lg" className="w-full bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 font-bold">
-              <a href="https://wa.me/601126817101" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2" size={20} />
-                Apply via WhatsApp
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
 
