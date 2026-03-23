@@ -90,9 +90,11 @@ const Index = () => {
       />
       <Header />
       <main className="flex-1">
+        <JapanImportHero />
         <LoanCalculator />
         <HowItWorks />
         <Testimonials />
+        <InstagramGallery />
         <FAQ />
       </main>
       <Footer />
