@@ -34,9 +34,9 @@ const InstagramGallery = () => {
           Follow Us on Instagram
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
+        <div className="flex flex-wrap lg:flex-nowrap justify-center gap-4 mb-8">
           {instagramPosts.map((url, index) => (
-            <div key={index} className="flex justify-center">
+            <div key={index} className="w-full sm:w-[48%] md:w-[31%] lg:w-[19%] flex-shrink-0">
               <blockquote
                 className="instagram-media"
                 data-instgrm-permalink={url}
@@ -46,8 +46,8 @@ const InstagramGallery = () => {
                   border: 0,
                   borderRadius: "12px",
                   margin: 0,
-                  maxWidth: "540px",
-                  minWidth: "280px",
+                  maxWidth: "100%",
+                  minWidth: "0",
                   width: "100%",
                 }}
               />
