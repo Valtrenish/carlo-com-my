@@ -120,7 +120,7 @@ const JapanImportHero = () => {
                   </div>
 
                   {/* Name */}
-                  <h4 className="text-xl font-bold text-foreground mb-3">{card.name}</h4>
+                  <h4 className="text-2xl font-bold text-foreground mb-3">{card.name}</h4>
 
                   {/* Description with icon */}
                   <div className="flex items-start gap-2 mb-6 flex-1">
