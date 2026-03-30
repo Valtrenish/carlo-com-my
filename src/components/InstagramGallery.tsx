@@ -25,27 +25,29 @@ const InstagramGallery = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-24 bg-muted">
-      <div className="container-carlo">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
+    <section className="py-10 md:py-16 bg-muted">
+      <div className="container-carlo max-w-6xl">
+        <h2 className="text-xl md:text-2xl font-bold text-center text-foreground mb-1">
           Carlo Commercial
         </h2>
-        <p className="text-center text-muted-foreground mb-10">
+        <p className="text-center text-muted-foreground mb-6 text-sm">
           Follow Us on Instagram
         </p>
 
-        <div className="flex flex-wrap lg:flex-nowrap justify-center gap-4 mb-8">
+        <div className="flex flex-wrap lg:flex-nowrap justify-center gap-3 mb-6">
           {instagramPosts.map((url, index) => (
-            <div key={index} className="w-full sm:w-[48%] md:w-[31%] lg:w-[19%] flex-shrink-0">
+            <div key={index} className="w-full sm:w-[48%] md:w-[31%] lg:w-[18%] flex-shrink-0 overflow-hidden">
               <blockquote
                 className="instagram-media"
                 data-instgrm-permalink={url}
                 data-instgrm-version="14"
+                data-instgrm-captioned=""
                 style={{
                   background: "hsl(var(--card))",
                   border: 0,
-                  borderRadius: "12px",
+                  borderRadius: "8px",
                   margin: 0,
+                  padding: 0,
                   maxWidth: "100%",
                   minWidth: "0",
                   width: "100%",
