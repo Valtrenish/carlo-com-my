@@ -41,7 +41,6 @@ const InstagramGallery = () => {
                 className="instagram-media"
                 data-instgrm-permalink={url}
                 data-instgrm-version="14"
-                data-instgrm-captioned=""
                 style={{
                   background: "hsl(var(--card))",
                   border: 0,
