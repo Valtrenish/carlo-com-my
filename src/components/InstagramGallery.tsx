@@ -7,6 +7,7 @@ const instagramPosts = [
   "https://www.instagram.com/p/DVqaqZXjbsB/",
   "https://www.instagram.com/carlomalaysia/reel/DVfVvRtkgUp/",
   "https://www.instagram.com/carlomalaysia/reel/DVGNrIrkofh/",
+  "https://www.instagram.com/p/DWTDg7JiaXh/",
 ];
 
 const InstagramGallery = () => {
