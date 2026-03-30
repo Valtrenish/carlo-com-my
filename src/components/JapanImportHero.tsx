@@ -110,17 +110,17 @@ const JapanImportHero = () => {
 
                 <div className="p-6 md:p-8 flex flex-col flex-1">
                   {/* Logo */}
-                  <div className="w-16 h-16 rounded-xl bg-muted flex items-center justify-center mb-5 border border-border">
+                  <div className="w-20 h-20 rounded-xl bg-muted flex items-center justify-center mb-5 border border-border">
                     <img
                       src={card.favicon}
                       alt={`${card.name} logo`}
-                      className="w-10 h-10 object-contain"
+                      className="w-14 h-14 object-contain"
                       loading="lazy"
                     />
                   </div>
 
                   {/* Name */}
-                  <h4 className="text-xl font-bold text-foreground mb-3">{card.name}</h4>
+                  <h4 className="text-2xl font-bold text-foreground mb-3">{card.name}</h4>
 
                   {/* Description with icon */}
                   <div className="flex items-start gap-2 mb-6 flex-1">
