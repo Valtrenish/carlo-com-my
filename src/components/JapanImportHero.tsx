@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Gavel, BadgeDollarSign, Zap, ShieldCheck, ExternalLink, MessageCircle, Quote } from "lucide-react";
+import { Gavel, BadgeDollarSign, Zap, ShieldCheck, ExternalLink, MessageCircle, Quote, Car, Search, CircleDollarSign, Star } from "lucide-react";
 
 const whyChooseItems = [
   { icon: Gavel, title: "Direct Auction Access", description: "Access Japan's top car auctions directly" },
@@ -12,18 +12,27 @@ const whyChooseItems = [
 const browseCards = [
   {
     name: "Carsensor.net",
-    description: "One of Japan's largest used car listing platforms with thousands of vehicles.",
+    description: "Japan's largest used car platform with over 500,000+ listings. Search by make, model, or budget with detailed vehicle history.",
     url: "https://www.carsensor.net/",
+    favicon: "https://www.google.com/s2/favicons?domain=carsensor.net&sz=64",
+    icon: Car,
+    badge: "Popular",
   },
   {
     name: "Goo-Net Exchange",
-    description: "Browse quality Japanese used cars with detailed inspection reports.",
+    description: "Quality Japanese used cars with comprehensive inspection reports. Trusted exporter platform with transparent pricing.",
     url: "https://www.goo-net-exchange.com/usedcars/",
+    favicon: "https://www.google.com/s2/favicons?domain=goo-net-exchange.com&sz=64",
+    icon: Search,
+    badge: "Trusted",
   },
   {
     name: "JPAUC One Price",
-    description: "Fixed-price Japanese cars ready for immediate purchase and export.",
+    description: "Fixed-price Japanese cars ready for immediate purchase and export. Simple location-based search with no bidding.",
     url: "https://jpauc.com/oneprice/location",
+    favicon: "https://www.google.com/s2/favicons?domain=jpauc.com&sz=64",
+    icon: CircleDollarSign,
+    badge: null,
   },
 ];
 
@@ -73,27 +82,64 @@ const JapanImportHero = () => {
         </div>
       </div>
 
-      {/* Browse Cars From Japan */}
-      <div className="py-12 md:py-16 bg-background">
+      {/* Browse Cars From Japan - Redesigned */}
+      <div className="py-14 md:py-20 bg-background">
         <div className="container-carlo">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
+          <h3 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
             Browse Thousands of Cars From Japan
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
+            Explore Japan's top car platforms and find your perfect vehicle
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {browseCards.map((card) => (
-              <a
+              <div
                 key={card.name}
-                href={card.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-card rounded-xl p-6 shadow-lg border border-border hover:shadow-xl hover:border-secondary transition-all group"
+                className="relative bg-card rounded-2xl border border-border shadow-md hover:shadow-2xl hover:scale-[1.03] hover:border-accent transition-all duration-300 group overflow-hidden flex flex-col"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-bold text-foreground text-lg">{card.name}</h4>
-                  <ExternalLink className="text-muted-foreground group-hover:text-secondary transition-colors" size={18} />
+                {/* Badge */}
+                {card.badge && (
+                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">
+                    <Star size={12} />
+                    {card.badge}
+                  </div>
+                )}
+
+                {/* Top gradient accent bar */}
+                <div className="h-1.5 w-full bg-gradient-to-r from-secondary to-accent" />
+
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  {/* Logo */}
+                  <div className="w-16 h-16 rounded-xl bg-muted flex items-center justify-center mb-5 border border-border">
+                    <img
+                      src={card.favicon}
+                      alt={`${card.name} logo`}
+                      className="w-10 h-10 object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Name */}
+                  <h4 className="text-xl font-bold text-foreground mb-3">{card.name}</h4>
+
+                  {/* Description with icon */}
+                  <div className="flex items-start gap-2 mb-6 flex-1">
+                    <card.icon className="text-secondary mt-0.5 shrink-0" size={18} />
+                    <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
+                  </div>
+
+                  {/* CTA Button */}
+                  <Button
+                    asChild
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold"
+                  >
+                    <a href={card.url} target="_blank" rel="noopener noreferrer">
+                      Visit Site
+                      <ExternalLink className="ml-2" size={16} />
+                    </a>
+                  </Button>
                 </div>
-                <p className="text-muted-foreground text-sm">{card.description}</p>
-              </a>
+              </div>
             ))}
           </div>
         </div>
