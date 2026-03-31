@@ -159,11 +159,11 @@ const JapanImportHero = () => {
       <div className="py-12 md:py-16 bg-muted">
         <div className="container-carlo max-w-2xl mx-auto text-center">
           <Quote className="text-primary mx-auto mb-4" size={36} />
-          <p className="text-foreground text-lg md:text-xl italic mb-4">
+          <p className="text-foreground text-xl md:text-2xl italic mb-4">
             "Very smooth import process. Carlo handled everything from auction to delivery. Highly recommended for anyone looking to import from Japan!"
           </p>
-          <p className="font-semibold text-primary">Ahmad</p>
-          <p className="text-muted-foreground text-sm">Kuala Lumpur</p>
+          <p className="font-bold text-primary text-lg">Ahmad</p>
+          <p className="text-muted-foreground text-base">Kuala Lumpur</p>
         </div>
       </div>
     </section>
