@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Gavel, BadgeDollarSign, Zap, ShieldCheck, ExternalLink, MessageCircle, Quote, Car, Search, CircleDollarSign, Star } from "lucide-react";
+import HeroCarousel from "@/components/HeroCarousel";
 
 const whyChooseItems = [
   { icon: Gavel, title: "Direct Auction Access", description: "Access Japan's top car auctions directly" },
