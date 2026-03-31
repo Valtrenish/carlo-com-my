@@ -95,10 +95,10 @@ const JapanImportHero = () => {
       {/* Browse Cars From Japan - Redesigned */}
       <div className="py-14 md:py-20 bg-muted">
         <div className="container-carlo">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+          <h3 className="text-3xl md:text-4xl font-extrabold text-center text-foreground mb-3">
             Browse Thousands of Cars From Japan
           </h3>
-          <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
+          <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto text-base md:text-lg">
             Explore Japan's top car platforms and find your perfect vehicle
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
