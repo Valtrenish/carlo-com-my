@@ -75,7 +75,7 @@ const JapanImportHero = () => {
       {/* Why Choose Carlo */}
       <div className="py-12 md:py-16 bg-muted">
         <div className="container-carlo">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
+          <h3 className="text-3xl md:text-4xl font-extrabold text-center text-foreground mb-10">
             Why Choose Carlo
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -84,8 +84,8 @@ const JapanImportHero = () => {
                 <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-3">
                   <item.icon className="text-secondary" size={28} />
                 </div>
-                <h4 className="font-semibold text-foreground text-sm md:text-base mb-1">{item.title}</h4>
-                <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
+                <h4 className="font-bold text-foreground text-base md:text-lg mb-1">{item.title}</h4>
+                <p className="text-muted-foreground text-sm md:text-base">{item.description}</p>
               </div>
             ))}
           </div>
@@ -95,10 +95,10 @@ const JapanImportHero = () => {
       {/* Browse Cars From Japan - Redesigned */}
       <div className="py-14 md:py-20 bg-muted">
         <div className="container-carlo">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+          <h3 className="text-3xl md:text-4xl font-extrabold text-center text-foreground mb-3">
             Browse Thousands of Cars From Japan
           </h3>
-          <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
+          <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto text-base md:text-lg">
             Explore Japan's top car platforms and find your perfect vehicle
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -109,7 +109,7 @@ const JapanImportHero = () => {
               >
                 {/* Badge */}
                 {card.badge && (
-                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-accent text-accent-foreground text-sm font-bold px-3 py-1 rounded-full">
                     <Star size={12} />
                     {card.badge}
                   </div>
@@ -130,18 +130,18 @@ const JapanImportHero = () => {
                   </div>
 
                   {/* Name */}
-                  <h4 className="text-2xl font-bold text-foreground mb-3">{card.name}</h4>
+                  <h4 className="text-2xl md:text-3xl font-extrabold text-foreground mb-3">{card.name}</h4>
 
                   {/* Description with icon */}
                   <div className="flex items-start gap-2 mb-6 flex-1">
                     <card.icon className="text-secondary mt-0.5 shrink-0" size={18} />
-                    <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
+                    <p className="text-muted-foreground text-base leading-relaxed">{card.description}</p>
                   </div>
 
                   {/* CTA Button */}
                   <Button
                     asChild
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold"
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base"
                   >
                     <a href={card.url} target="_blank" rel="noopener noreferrer">
                       Visit Site
@@ -159,11 +159,11 @@ const JapanImportHero = () => {
       <div className="py-12 md:py-16 bg-muted">
         <div className="container-carlo max-w-2xl mx-auto text-center">
           <Quote className="text-primary mx-auto mb-4" size={36} />
-          <p className="text-foreground text-lg md:text-xl italic mb-4">
+          <p className="text-foreground text-xl md:text-2xl italic mb-4">
             "Very smooth import process. Carlo handled everything from auction to delivery. Highly recommended for anyone looking to import from Japan!"
           </p>
-          <p className="font-semibold text-primary">Ahmad</p>
-          <p className="text-muted-foreground text-sm">Kuala Lumpur</p>
+          <p className="font-bold text-primary text-lg">Ahmad</p>
+          <p className="text-muted-foreground text-base">Kuala Lumpur</p>
         </div>
       </div>
     </section>
