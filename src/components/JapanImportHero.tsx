@@ -141,7 +141,7 @@ const JapanImportHero = () => {
                   {/* CTA Button */}
                   <Button
                     asChild
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold"
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base"
                   >
                     <a href={card.url} target="_blank" rel="noopener noreferrer">
                       Visit Site
