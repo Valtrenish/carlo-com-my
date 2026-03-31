@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Gavel, BadgeDollarSign, Zap, ShieldCheck, ExternalLink, MessageCircle, Quote, Car, Search, CircleDollarSign, Star } from "lucide-react";
+import HeroCarousel from "@/components/HeroCarousel";
 
 const whyChooseItems = [
   { icon: Gavel, title: "Direct Auction Access", description: "Access Japan's top car auctions directly" },
@@ -40,24 +41,33 @@ const JapanImportHero = () => {
   return (
     <section>
       {/* Hero */}
-      <div className="gradient-hero py-16 md:py-24">
-        <div className="container-carlo text-center text-primary-foreground">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-            Import Your Dream Car From Japan
-          </h2>
-          <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Carlo connects you directly to Japan's finest car auctions. Get transparent pricing, fast loan approval, and a seamless import experience.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-base">
-              <Link to="/carloancalculator">Calculate Loan</Link>
-            </Button>
-            <Button asChild size="lg" className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 font-bold text-base">
-              <a href="https://wa.me/601126817101" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2" size={20} />
-                WhatsApp Advisor
-              </a>
-            </Button>
+      <div className="gradient-hero py-12 md:py-20">
+        <div className="container-carlo">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            {/* Text */}
+            <div className="flex-1 text-center lg:text-left text-primary-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                Import Your Dream Car From Japan
+              </h2>
+              <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto lg:mx-0">
+                Carlo connects you directly to Japan's finest car auctions. Get transparent pricing, fast loan approval, and a seamless import experience.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-base">
+                  <Link to="/carloancalculator">Calculate Loan</Link>
+                </Button>
+                <Button asChild size="lg" className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 font-bold text-base">
+                  <a href="https://wa.me/601126817101" target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="mr-2" size={20} />
+                    WhatsApp Advisor
+                  </a>
+                </Button>
+              </div>
+            </div>
+            {/* Carousel */}
+            <div className="flex-1 w-full max-w-xl lg:max-w-none">
+              <HeroCarousel />
+            </div>
           </div>
         </div>
       </div>
