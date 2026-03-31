@@ -109,7 +109,7 @@ const JapanImportHero = () => {
               >
                 {/* Badge */}
                 {card.badge && (
-                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 right-4 flex items-center gap-1 bg-accent text-accent-foreground text-sm font-bold px-3 py-1 rounded-full">
                     <Star size={12} />
                     {card.badge}
                   </div>
