@@ -135,7 +135,7 @@ const JapanImportHero = () => {
                   {/* Description with icon */}
                   <div className="flex items-start gap-2 mb-6 flex-1">
                     <card.icon className="text-secondary mt-0.5 shrink-0" size={18} />
-                    <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
+                    <p className="text-muted-foreground text-base leading-relaxed">{card.description}</p>
                   </div>
 
                   {/* CTA Button */}
