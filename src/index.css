@@ -94,7 +94,36 @@
 
 @layer components {
   .gradient-hero {
-    background: linear-gradient(180deg, hsl(207 90% 54%) 0%, hsl(207 70% 40%) 50%, hsl(220 20% 20%) 100%);
+    background: linear-gradient(160deg, #0A2540 0%, #1A3A5A 50%, #0A2540 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      /* Grid lines */
+      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px),
+      /* Diagonal tire-track-like stripes */
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.18) 40px,
+        rgba(255,255,255,0.18) 42px
+      );
+    background-size: 60px 60px, 60px 60px, 100% 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .gradient-hero > * {
+    position: relative;
+    z-index: 1;
   }
   
   .container-carlo {
