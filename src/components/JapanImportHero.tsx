@@ -84,8 +84,8 @@ const JapanImportHero = () => {
                 <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-3">
                   <item.icon className="text-secondary" size={28} />
                 </div>
-                <h4 className="font-semibold text-foreground text-sm md:text-base mb-1">{item.title}</h4>
-                <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
+                <h4 className="font-bold text-foreground text-base md:text-lg mb-1">{item.title}</h4>
+                <p className="text-muted-foreground text-sm md:text-base">{item.description}</p>
               </div>
             ))}
           </div>
