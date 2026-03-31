@@ -93,7 +93,7 @@ const JapanImportHero = () => {
       </div>
 
       {/* Browse Cars From Japan - Redesigned */}
-      <div className="py-14 md:py-20 bg-background">
+      <div className="py-14 md:py-20 bg-muted">
         <div className="container-carlo">
           <h3 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
             Browse Thousands of Cars From Japan
