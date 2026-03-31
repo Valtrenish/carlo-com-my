@@ -10,11 +10,9 @@ import car4 from "@/assets/car-4.jpg";
 import car5 from "@/assets/car-5.jpg";
 
 const slides = [
-  { src: car1, caption: "Honda Civic — Available for Import" },
-  { src: car2, caption: "Mercedes A-Class — Available for Import" },
-  { src: car3, caption: "Honda Civic RS — Available for Import" },
-  { src: car4, caption: "Toyota Supra — Available for Import" },
-  { src: car5, caption: "Nissan GT-R R34 — Available for Import" },
+  { src: car1, caption: "Honda Civic — Available Now" },
+  { src: car2, caption: "Mercedes A-Class — Available Now" },
+  { src: car3, caption: "Honda Civic RS — Available Now" },
 ];
 
 const HeroCarousel = () => {
