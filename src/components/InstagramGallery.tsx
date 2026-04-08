@@ -1,18 +1,51 @@
 import { Button } from "@/components/ui/button";
-import { Instagram } from "lucide-react";
+import { Instagram, Heart, MessageCircle } from "lucide-react";
 
 const INSTAGRAM_URL = "https://www.instagram.com/carlomalaysia/";
 
 const posts = [
-  { caption: "Mercedes Benz A180 – Delivery of the Day", price: "" },
-  { caption: "Selamat Hari Raya Aidilfitri", price: "" },
-  { caption: "Raya DGN Mercedes – A250 & B180", price: "" },
-  { caption: "Hari Raya Sale – Diskaun 20K", price: "" },
-  { caption: "2021 Toyota Harrier Z Leather Package", price: "" },
-  { caption: "Porsche Cayenne", price: "" },
-  { caption: "Mercedes CLA 45s", price: "RM118K" },
-  { caption: "2020 BMW 118i M Sport", price: "RM118K" },
-  { caption: "Toyota Harrier & Honda Stepwagon", price: "Diskaun RM10K" },
+  {
+    link: "https://www.instagram.com/p/DWTDg7JiaXh/",
+    emoji: "🚗",
+    caption: "Terima kasih Puan Haiza... membeli Mercedes-Benz A180",
+    details: "Customer testimonial",
+    date: "Mar 25, 2026",
+  },
+  {
+    link: "https://www.instagram.com/p/DWG9U_RCeK6/",
+    emoji: "🌙",
+    caption: "Selamat Hari Raya Aidilfitri 🌙 Maaf Zahir & Batin",
+    details: "Hari Raya greeting",
+    date: "Mar 20, 2026",
+  },
+  {
+    link: "https://www.instagram.com/p/DVqaqZXjbsB/",
+    emoji: "🏎️",
+    caption: "Kereta Baru Untuk Raya? Mercedes B180 RM125k / A250 RM165k",
+    details: "Raya car promo",
+    date: "Early Mar 2026",
+  },
+  {
+    link: "https://www.instagram.com/p/DVfWWs9CfRO/",
+    emoji: "🔥",
+    caption: "Hari Raya Car Sale 🚗 Diskaun sehingga RM20,000* | Harga dari RM118k",
+    details: "Raya sale",
+    date: "Mar 5, 2026",
+  },
+  {
+    link: "https://www.instagram.com/p/DVfVvRtkgUp/",
+    emoji: "⚡",
+    caption: "Toyota Harrier 2021 🚗 RM165,000* | Promosi Hari Raya",
+    details: "Harrier promo",
+    date: "Mar 5, 2026",
+  },
+  {
+    link: "https://www.instagram.com/p/DVP14U8kmPA/",
+    emoji: "💎",
+    caption: "Porsche Cayenne 3.0L | 2020 | Silver | 34k km | Full specs",
+    details: "Cayenne listing",
+    date: "Late Feb 2026",
+  },
 ];
 
 const InstagramGallery = () => {
@@ -21,8 +54,10 @@ const InstagramGallery = () => {
       <div className="container-carlo max-w-5xl">
         {/* Profile Header */}
         <div className="flex flex-col sm:flex-row items-center gap-5 mb-10 px-2">
-          <div className="w-20 h-20 rounded-full border-2 border-accent bg-background flex items-center justify-center shrink-0">
-            <Instagram className="text-primary" size={36} />
+          <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-[3px] shrink-0">
+            <div className="w-full h-full rounded-full bg-[hsl(220,40%,13%)] flex items-center justify-center">
+              <Instagram className="text-white" size={32} />
+            </div>
           </div>
           <div className="text-center sm:text-left">
             <a
@@ -45,40 +80,41 @@ const InstagramGallery = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
           {posts.map((post, i) => (
             <a
               key={i}
-              href={INSTAGRAM_URL}
+              href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="group relative bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
             >
               {/* Image placeholder */}
-              <div className="aspect-square bg-muted flex items-center justify-center">
-                <span className="text-4xl opacity-30">📷</span>
-              </div>
+              <div className="aspect-square bg-gradient-to-br from-muted to-muted-foreground/10 flex items-center justify-center relative">
+                <span className="text-5xl opacity-40">{post.emoji}</span>
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <Instagram className="text-white" size={32} />
-              </div>
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-6">
+                  <div className="flex items-center gap-1.5 text-white font-semibold">
+                    <Heart size={20} fill="white" />
+                  </div>
+                  <div className="flex items-center gap-1.5 text-white font-semibold">
+                    <MessageCircle size={20} fill="white" />
+                  </div>
+                </div>
 
-              {/* Corner icon */}
-              <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Instagram className="text-white" size={14} />
+                {/* Corner Instagram icon */}
+                <div className="absolute top-2.5 right-2.5 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-lg p-1.5 shadow-lg">
+                  <Instagram className="text-white" size={14} />
+                </div>
               </div>
 
               {/* Caption */}
-              <div className="p-3 bg-card">
+              <div className="p-3">
                 <p className="text-foreground text-xs md:text-sm font-semibold leading-tight line-clamp-2">
                   {post.caption}
                 </p>
-                {post.price && (
-                  <span className="inline-block mt-1 text-xs font-bold text-accent bg-accent/10 rounded px-2 py-0.5">
-                    {post.price}
-                  </span>
-                )}
+                <p className="text-muted-foreground text-[11px] mt-1.5">{post.date}</p>
               </div>
             </a>
           ))}
