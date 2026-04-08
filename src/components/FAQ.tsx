@@ -45,11 +45,12 @@ Non-Malaysian applicants will need to contact us for a direct quote.
 
 const FAQ = () => {
   return (
-    <section className="py-16 md:py-24 bg-muted">
+    <section className="py-10 md:py-12 bg-muted">
       <div className="container-carlo">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-12">
+        <h2 className="text-xl md:text-2xl font-extrabold text-center text-foreground mb-2">
           FAQ
         </h2>
+        <div className="w-12 h-1 bg-accent mx-auto rounded-full mb-8" />
 
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
