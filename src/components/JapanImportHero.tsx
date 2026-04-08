@@ -72,6 +72,44 @@ const JapanImportHero = () => {
         </div>
       </div>
 
+      {/* How to Import from Japan */}
+      <div className="py-14 md:py-20 bg-background">
+        <div className="container-carlo">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            {/* Video - Left Column */}
+            <div className="flex-1 w-full">
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-border">
+                <video
+                  className="w-full h-auto"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster=""
+                >
+                  <source src="/videos/carlo-japan-import.mov" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            {/* Text - Right Column */}
+            <div className="flex-1 text-center lg:text-left">
+              <h3 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+                How to Import from Japan
+              </h3>
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
+                Watch how Carlo makes importing your dream car from Japan simple and hassle-free. From browsing auctions to doorstep delivery — we handle it all.
+              </p>
+              <Button asChild size="lg" className="bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 font-bold text-base">
+                <a href="https://wa.me/601126817101" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2" size={20} />
+                  Talk to an Advisor
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Why Choose Carlo */}
       <div className="py-12 md:py-16 bg-muted">
         <div className="container-carlo">
