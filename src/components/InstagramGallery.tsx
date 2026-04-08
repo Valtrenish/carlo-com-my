@@ -1,64 +1,52 @@
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Instagram } from "lucide-react";
 
-const instagramPosts = [
-  "https://www.instagram.com/p/DVfWWs9CfRO/",
-  "https://www.instagram.com/p/DVqaqZXjbsB/",
-  "https://www.instagram.com/carlomalaysia/reel/DVfVvRtkgUp/",
-  "https://www.instagram.com/carlomalaysia/reel/DVGNrIrkofh/",
-  "https://www.instagram.com/p/DWTDg7JiaXh/",
+const placeholders = [
+  { label: "JDM Sports Car", gradient: "from-blue-900 to-slate-800" },
+  { label: "Toyota Supra", gradient: "from-slate-800 to-blue-800" },
+  { label: "Nissan GT-R", gradient: "from-blue-800 to-indigo-900" },
+  { label: "Honda NSX", gradient: "from-indigo-900 to-slate-700" },
+  { label: "Mazda RX-7", gradient: "from-slate-700 to-blue-900" },
+  { label: "Subaru WRX STI", gradient: "from-blue-900 to-slate-900" },
 ];
 
-const InstagramGallery = () => {
-  useEffect(() => {
-    // Load Instagram embed script
-    if (!document.getElementById("instagram-embed-script")) {
-      const script = document.createElement("script");
-      script.id = "instagram-embed-script";
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      document.body.appendChild(script);
-    } else if ((window as any).instgrm) {
-      (window as any).instgrm.Embeds.process();
-    }
-  }, []);
+const INSTAGRAM_URL = "https://www.instagram.com/carlomalaysia/";
 
+const InstagramGallery = () => {
   return (
     <section className="py-10 md:py-16 bg-muted">
-      <div className="container-carlo max-w-6xl">
-        <h2 className="text-xl md:text-2xl font-bold text-center text-foreground mb-1">
+      <div className="container-carlo max-w-5xl">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-center text-foreground mb-1">
           Carlo Commercial
         </h2>
-        <p className="text-center text-muted-foreground mb-6 text-sm">
+        <p className="text-center text-muted-foreground mb-8 text-base">
           Follow Us on Instagram
         </p>
 
-        <div className="flex flex-wrap lg:flex-nowrap justify-center gap-3 mb-6">
-          {instagramPosts.map((url, index) => (
-            <div key={index} className="w-full sm:w-[48%] md:w-[31%] lg:w-[18%] flex-shrink-0 overflow-hidden">
-              <blockquote
-                className="instagram-media"
-                data-instgrm-permalink={url}
-                data-instgrm-version="14"
-                style={{
-                  background: "hsl(var(--card))",
-                  border: 0,
-                  borderRadius: "8px",
-                  margin: 0,
-                  padding: 0,
-                  maxWidth: "100%",
-                  minWidth: "0",
-                  width: "100%",
-                }}
-              />
-            </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-8">
+          {placeholders.map((item, i) => (
+            <a
+              key={i}
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer"
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} />
+              <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
+                <Instagram className="text-white mb-2" size={32} />
+                <span className="text-white text-sm font-semibold">{item.label}</span>
+              </div>
+              <div className="absolute bottom-3 right-3 opacity-60 group-hover:opacity-0 transition-opacity">
+                <Instagram className="text-white" size={20} />
+              </div>
+            </a>
           ))}
         </div>
 
         <div className="text-center">
-          <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
-            <a href="https://www.instagram.com/carlomalaysia/" target="_blank" rel="noopener noreferrer">
+          <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
               <Instagram className="mr-2" size={20} />
               Follow Us on Instagram
             </a>
