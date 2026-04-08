@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import InstagramGallery from "@/components/InstagramGallery";
+import Car360Gallery from "@/components/Car360Gallery";
 
 const Commercial = () => {
   return (
