@@ -2,50 +2,66 @@ import { Button } from "@/components/ui/button";
 import { Instagram } from "lucide-react";
 
 const placeholders = [
-  { label: "JDM Sports Car", gradient: "from-blue-900 to-slate-800" },
-  { label: "Toyota Supra", gradient: "from-slate-800 to-blue-800" },
-  { label: "Nissan GT-R", gradient: "from-blue-800 to-indigo-900" },
-  { label: "Honda NSX", gradient: "from-indigo-900 to-slate-700" },
-  { label: "Mazda RX-7", gradient: "from-slate-700 to-blue-900" },
-  { label: "Subaru WRX STI", gradient: "from-blue-900 to-slate-900" },
+  { label: "JDM Sports Car", emoji: "🏎️" },
+  { label: "Toyota Supra", emoji: "🔥" },
+  { label: "Nissan GT-R", emoji: "⚡" },
+  { label: "Honda NSX", emoji: "🏁" },
+  { label: "Mazda RX-7", emoji: "💨" },
+  { label: "Subaru WRX STI", emoji: "🚗" },
 ];
 
 const INSTAGRAM_URL = "https://www.instagram.com/carlomalaysia/";
 
 const InstagramGallery = () => {
   return (
-    <section className="py-10 md:py-16 bg-muted">
+    <section className="py-12 md:py-20 bg-muted">
       <div className="container-carlo max-w-5xl">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-center text-foreground mb-1">
-          Carlo Commercial
-        </h2>
-        <p className="text-center text-muted-foreground mb-8 text-base">
-          Follow Us on Instagram
-        </p>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
+            <Instagram size={16} />
+            @carlomalaysia
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
+            Follow Us on Instagram
+          </h2>
+          <p className="text-muted-foreground mt-2 text-base md:text-lg max-w-md mx-auto">
+            Stay updated with our latest arrivals and behind-the-scenes content.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
           {placeholders.map((item, i) => (
             <a
               key={i}
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer"
+              className="group relative aspect-square rounded-2xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-lg transition-all duration-300"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} />
-              <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
-                <Instagram className="text-white mb-2" size={32} />
-                <span className="text-white text-sm font-semibold">{item.label}</span>
+              {/* Placeholder content */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/5 flex items-center justify-center">
+                <span className="text-5xl opacity-40 group-hover:opacity-20 transition-opacity">{item.emoji}</span>
               </div>
-              <div className="absolute bottom-3 right-3 opacity-60 group-hover:opacity-0 transition-opacity">
-                <Instagram className="text-white" size={20} />
+
+              {/* Instagram gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#833ab4]/70 via-[#fd1d1d]/50 to-[#fcb045]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Hover content */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <Instagram className="text-white mb-2" size={36} strokeWidth={1.5} />
+                <span className="text-white text-sm font-bold tracking-wide">{item.label}</span>
+              </div>
+
+              {/* Corner icon */}
+              <div className="absolute bottom-3 right-3 bg-black/30 backdrop-blur-sm rounded-full p-1.5 opacity-70 group-hover:opacity-0 transition-opacity z-10">
+                <Instagram className="text-white" size={16} />
               </div>
             </a>
           ))}
         </div>
 
         <div className="text-center">
-          <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold text-base">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-base rounded-full px-8 shadow-md">
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
               <Instagram className="mr-2" size={20} />
               Follow Us on Instagram
