@@ -73,7 +73,7 @@ const JapanImportHero = () => {
       </div>
 
       {/* How to Import from Japan */}
-      <div className="py-14 md:py-20 bg-background">
+      <div className="py-14 md:py-20 bg-muted">
         <div className="container-carlo">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             {/* Video - Left Column */}
