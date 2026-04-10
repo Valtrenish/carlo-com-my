@@ -9,7 +9,7 @@ import heroCar from "@/assets/hero-car.webp";
 const LoanCalculator = () => {
   const [carPrice, setCarPrice] = useState(150000);
   const [downPayment, setDownPayment] = useState(15000);
-  const [interestRate, setInterestRate] = useState(3.5);
+  const [interestRate, setInterestRate] = useState(2.5);
   const [loanPeriod, setLoanPeriod] = useState(9);
 
   const calculateMonthlyPayment = useCallback(() => {
