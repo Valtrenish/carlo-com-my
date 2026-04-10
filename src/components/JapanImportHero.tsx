@@ -1,8 +1,9 @@
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Gavel, BadgeDollarSign, Zap, ShieldCheck, ExternalLink,
-  MessageCircle, Quote, Car, Search, CircleDollarSign, Star, Play, User,
+  MessageCircle, Car, Search, CircleDollarSign, Star, Play, X,
 } from "lucide-react";
 import HeroCarousel from "@/components/HeroCarousel";
 
