@@ -9,7 +9,7 @@ import heroCar from "@/assets/hero-car.webp";
 const LoanCalculator = () => {
   const [carPrice, setCarPrice] = useState(150000);
   const [downPayment, setDownPayment] = useState(15000);
-  const [interestRate, setInterestRate] = useState(3.5);
+  const [interestRate, setInterestRate] = useState(2.5);
   const [loanPeriod, setLoanPeriod] = useState(9);
 
   const calculateMonthlyPayment = useCallback(() => {
@@ -128,6 +128,10 @@ const LoanCalculator = () => {
                 </Link>
               </Button>
             </div>
+
+            <p className="text-[12px] mt-4" style={{ color: '#E53E3E' }}>
+              * The displayed monthly payment is an estimate only. Actual loan terms subject to bank approval.
+            </p>
           </div>
         </div>
       </div>
