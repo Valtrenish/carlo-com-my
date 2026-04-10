@@ -3,14 +3,24 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import car1 from "@/assets/car-1.jpg";
-import car2 from "@/assets/car-2.jpg";
-import car3 from "@/assets/car-3.jpg";
+import carBmwBlue from "@/assets/car-bmw-blue.jpg";
+import carBmwRed from "@/assets/car-bmw-red.jpg";
+import carCivicFk7 from "@/assets/car-civic-fk7.jpg";
+import carCivicFl1Blue from "@/assets/car-civic-fl1-blue.jpg";
+import carCivicFl1Red from "@/assets/car-civic-fl1-red.jpg";
+import carMercB180 from "@/assets/car-merc-b180.jpg";
+import carMercA250 from "@/assets/car-merc-a250.jpg";
+import carHarrier from "@/assets/car-harrier.jpg";
 
 const slides = [
-  { src: car1, caption: "Honda Civic — Available Now" },
-  { src: car2, caption: "Mercedes A-Class — Available Now" },
-  { src: car3, caption: "Honda Civic RS — Available Now" },
+  { src: carBmwBlue, caption: "2020 BMW 118i M-Sport — Available Now" },
+  { src: carBmwRed, caption: "2020 BMW 118i M-Sport — Available Now" },
+  { src: carCivicFk7, caption: "2020 Honda Civic FK7 — Available Now" },
+  { src: carCivicFl1Blue, caption: "2021 Honda Civic FL1 — Available Now" },
+  { src: carCivicFl1Red, caption: "2021 Honda Civic FL1 — Available Now" },
+  { src: carMercB180, caption: "2020 Mercedes Benz B180 — Available Now" },
+  { src: carMercA250, caption: "2021 Mercedes Benz A250 — Available Now" },
+  { src: carHarrier, caption: "2021 Toyota Harrier — Available Now" },
 ];
 
 const HeroCarousel = () => {
