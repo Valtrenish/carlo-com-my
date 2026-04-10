@@ -45,6 +45,18 @@ const browseCards = [
 ];
 
 const JapanImportHero = () => {
+  const [isVertical, setIsVertical] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoClick = () => {
+    if (!isVertical) {
+      setIsVertical(true);
+      setTimeout(() => {
+        videoRef.current?.play();
+      }, 500);
+    }
+  };
+
   return (
     <section>
       {/* Hero — compact */}
