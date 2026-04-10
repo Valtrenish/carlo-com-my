@@ -128,6 +128,10 @@ const LoanCalculator = () => {
                 </Link>
               </Button>
             </div>
+
+            <p className="text-[12px] mt-4" style={{ color: '#E53E3E' }}>
+              * The displayed monthly payment is an estimate only. Actual loan terms subject to bank approval.
+            </p>
           </div>
         </div>
       </div>
