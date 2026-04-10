@@ -104,7 +104,7 @@ const JapanImportHero = () => {
       <div className="py-10 md:py-12 bg-muted">
         <div className="container-carlo">
           <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-            <div className="flex-1 w-full">
+            <div className="w-full lg:w-2/5">
               <div className="rounded-xl overflow-hidden shadow-md border border-border bg-card">
                 <video
                   className="w-full h-auto"
