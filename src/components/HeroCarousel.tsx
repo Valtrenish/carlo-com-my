@@ -50,11 +50,11 @@ const HeroCarousel = () => {
       <div ref={emblaRef} className="overflow-hidden">
         <div className="flex">
           {slides.map((slide, i) => (
-            <div key={i} className="min-w-0 shrink-0 grow-0 basis-full relative">
+            <div key={i} className="min-w-0 shrink-0 grow-0 basis-full relative bg-black">
               <img
                 src={slide.src}
                 alt={slide.caption}
-                className="w-full aspect-[16/10] object-cover"
+                className="w-full aspect-[16/10] object-contain"
                 loading={i === 0 ? "eager" : "lazy"}
                 width={1024}
                 height={640}
