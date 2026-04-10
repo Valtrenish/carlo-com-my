@@ -200,31 +200,6 @@ const JapanImportHero = () => {
         </div>
       </div>
 
-      {/* Testimonial — card with stars & avatar */}
-      <div className="py-10 md:py-12 bg-secondary/5">
-        <div className="container-carlo">
-          <div className="max-w-2xl mx-auto bg-card rounded-xl border border-border shadow-md p-6 md:p-8 text-center">
-            <Quote className="text-accent mx-auto mb-3" size={28} />
-            <div className="flex justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={16} className="fill-accent text-accent" />
-              ))}
-            </div>
-            <p className="text-foreground text-base md:text-lg italic mb-5 leading-relaxed">
-              "Very smooth import process. Carlo handled everything from auction to delivery. Highly recommended for anyone looking to import from Japan!"
-            </p>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center border border-border">
-                <User size={18} className="text-muted-foreground" />
-              </div>
-              <div className="text-left">
-                <p className="font-bold text-foreground text-sm">Ahmad</p>
-                <p className="text-muted-foreground text-xs">Kuala Lumpur</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
