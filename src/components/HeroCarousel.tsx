@@ -60,8 +60,8 @@ const HeroCarousel = () => {
                 height={640}
               />
               {/* Caption overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3">
-                <p className="text-white text-sm md:text-base font-medium">{slide.caption}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-1.5">
+                <p className="text-white text-xs md:text-sm font-medium">{slide.caption}</p>
               </div>
             </div>
           ))}
