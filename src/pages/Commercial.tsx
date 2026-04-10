@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import InstagramGallery from "@/components/InstagramGallery";
 import Car360Gallery from "@/components/Car360Gallery";
+import ThreeSixtyViewer from "@/components/ThreeSixtyViewer";
 
 const Commercial = () => {
   return (
