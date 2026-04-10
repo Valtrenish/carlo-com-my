@@ -113,21 +113,60 @@ const JapanImportHero = () => {
         </div>
       </div>
 
-      {/* How to Import — video section, compact */}
+      {/* How to Import — video section with expand interaction */}
       <div className="py-10 md:py-12 bg-muted">
         <div className="container-carlo">
           <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-            <div className="w-full lg:w-2/5">
-              <div className="rounded-xl overflow-hidden shadow-md border border-border bg-card">
-                <video
-                  className="w-full h-auto"
-                  controls
-                  playsInline
-                  preload="metadata"
+            <div
+              className="transition-all duration-500 ease-in-out"
+              style={{
+                width: isVertical ? "min(280px, 100%)" : "100%",
+                maxWidth: isVertical ? "280px" : "500px",
+                margin: isVertical ? "0 auto" : undefined,
+              }}
+            >
+              <div
+                className="relative rounded-xl overflow-hidden shadow-md border border-border bg-card cursor-pointer group"
+                onClick={handleVideoClick}
+              >
+                <div
+                  className="relative w-full transition-all duration-500 ease-in-out"
+                  style={{ paddingBottom: isVertical ? "177.78%" : "56.25%" }}
                 >
-                  <source src="/videos/carlo-japan-import.mov" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                  <video
+                    ref={videoRef}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    playsInline
+                    preload="metadata"
+                    controls={isVertical}
+                  >
+                    <source src="/videos/carlo-japan-import.mov" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+
+                  {!isVertical && (
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
+                      <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <Play className="text-accent-foreground ml-0.5" size={24} fill="currentColor" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {isVertical && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsVertical(false);
+                      if (videoRef.current) {
+                        videoRef.current.pause();
+                      }
+                    }}
+                    className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-foreground/70 text-background flex items-center justify-center hover:bg-foreground/90 transition-colors"
+                  >
+                    <X size={16} />
+                  </button>
+                )}
               </div>
             </div>
             <div className="flex-1 text-center lg:text-left">
