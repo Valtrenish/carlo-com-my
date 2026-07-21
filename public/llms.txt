@@ -1,0 +1,12 @@
+# Carlo
+
+> Malaysia's trusted car import and financing specialist — source your dream car from Japan and get the right loan, hassle-free.
+
+Carlo helps Malaysian buyers import quality used cars from Japan and secure competitive car loans. The site combines a Japan car import service, a car loan calculator, commercial vehicle sourcing, and a loan eligibility check.
+
+## Pages
+
+- [Import a Car](/): Browse and import quality used cars from Japan with Carlo's end-to-end sourcing service.
+- [Car Loan Calculator](/carloancalculator): Estimate monthly repayments with Malaysia flat-rate car financing.
+- [Commercial Vehicles](/commercial): Import commercial vehicles and explore 360° car gallery views.
+- [Loan Eligibility Check](/loan-check): Answer a few quick questions to get matched with the right car and finance.
