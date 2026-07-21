@@ -666,6 +666,16 @@ const ApplyLoan = () => {
       />
       <Header />
 
+      {/* Page title */}
+      <section className="bg-[#0A2540] py-10 md:py-14">
+        <div className="container-carlo text-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            Car Loan Eligibility Check in Minutes
+          </h1>
+          <div className="mt-4 mx-auto w-24 h-1.5 bg-carlo-orange rounded-full"></div>
+        </div>
+      </section>
+
       <main className="flex-1 py-8 md:py-12">
         <div className="container-carlo">
           <div className="max-w-2xl mx-auto">
