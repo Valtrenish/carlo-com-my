@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      loan_applications: {
+        Row: {
+          city: string | null
+          created_at: string
+          declaration_agreed: boolean | null
+          downpayment: string | null
+          email_address: string | null
+          employer: string | null
+          full_name: string | null
+          id: string
+          loan_period: string | null
+          mobile_number: string | null
+          nric_number: string | null
+          occupation: string | null
+          purpose: string | null
+          refinance: string | null
+          service_length: string | null
+          state: string | null
+          summary: string | null
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          declaration_agreed?: boolean | null
+          downpayment?: string | null
+          email_address?: string | null
+          employer?: string | null
+          full_name?: string | null
+          id?: string
+          loan_period?: string | null
+          mobile_number?: string | null
+          nric_number?: string | null
+          occupation?: string | null
+          purpose?: string | null
+          refinance?: string | null
+          service_length?: string | null
+          state?: string | null
+          summary?: string | null
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          declaration_agreed?: boolean | null
+          downpayment?: string | null
+          email_address?: string | null
+          employer?: string | null
+          full_name?: string | null
+          id?: string
+          loan_period?: string | null
+          mobile_number?: string | null
+          nric_number?: string | null
+          occupation?: string | null
+          purpose?: string | null
+          refinance?: string | null
+          service_length?: string | null
+          state?: string | null
+          summary?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
