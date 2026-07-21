@@ -659,8 +659,8 @@ const ApplyLoan = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="Apply for Car Loan - Carlo Malaysia"
-        description="Apply for a car loan in Malaysia with Carlo. Simple 5-minute online application with quick approval and competitive rates from major banks."
+        title="Car Loan Eligibility Check in Minutes"
+        description="Check what car you can afford in minutes. Answer a few quick questions and Carlo's experts will match you with the right car and finance."
         canonical="/loan-check"
         favicon="/favicon-orange.png"
       />
