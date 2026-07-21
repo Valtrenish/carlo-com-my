@@ -633,21 +633,38 @@ const ApplyLoan = () => {
               >
                 Save Draft
               </Button>
-              <a
-                href="https://wa.me/601126817101"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1"
-                onClick={() => {
+              <Button
+                id={`btn-loan-whatsapp-${progressPercent}pct`}
+                className="flex-1 bg-whatsapp hover:bg-whatsapp/90 text-white gap-2"
+                onClick={async () => {
                   if (!validateStep()) return;
+                  const summary = buildFormSummary();
+
+                  // B) Auto-send email copy to sales via edge function (fire-and-forget)
+                  try {
+                    supabase.functions.invoke("send-loan-application", {
+                      body: { formData, summary },
+                    });
+                  } catch (err) {
+                    console.error("send-loan-application invoke failed", err);
+                  }
+
+                  // A) Open WhatsApp with the form summary pre-filled
+                  const waText = encodeURIComponent(
+                    `Hi Carlo, I just submitted my loan application.\n\n${summary}`
+                  );
                   localStorage.removeItem(DRAFT_KEY);
+                  window.open(
+                    `https://wa.me/601126817101?text=${waText}`,
+                    "_blank",
+                    "noopener,noreferrer"
+                  );
                 }}
               >
-                <Button className="w-full bg-whatsapp hover:bg-whatsapp/90 text-white gap-2">
-                  <MessageCircle className="h-4 w-4" />
-                  Chat on WhatsApp
-                </Button>
-              </a>
+                <MessageCircle className="h-4 w-4" />
+                Chat on WhatsApp
+              </Button>
+
             </nav>
           </fieldset>
         );
