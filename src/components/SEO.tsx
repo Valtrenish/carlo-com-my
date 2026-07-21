@@ -15,6 +15,22 @@ const OG_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/116df794-9
 const SEO = ({ title, description, canonical, jsonLd, noindex, favicon }: SEOProps) => {
   const fullUrl = `${SITE_URL}${canonical}`;
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Carlo",
+    url: SITE_URL,
+    logo: `${SITE_URL}/favicon.png`,
+    sameAs: ["https://www.instagram.com/carlomalaysia"],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Carlo",
+    url: SITE_URL,
+  };
+
   return (
     <Helmet>
       <title>{title}</title>
@@ -33,6 +49,9 @@ const SEO = ({ title, description, canonical, jsonLd, noindex, favicon }: SEOPro
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
+
+      <script type="application/ld+json">{JSON.stringify(organizationJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(websiteJsonLd)}</script>
 
       {jsonLd && (
         <script type="application/ld+json">
