@@ -1,53 +1,54 @@
+## SEO Compliance Audit
 
+### Meta descriptions — all pages ✅
+Every route has a unique meta description via the `SEO` component (react-helmet-async):
 
-## Plan: Add 3 New Sections to Landing Page
+| Route | Title | Description |
+|---|---|---|
+| `/` (Import) | Carlo - Import Your Dream Car From Japan | ✅ Set |
+| `/carloancalculator` | Carlo - Easy Car Loan Calculator Malaysia | ✅ Set |
+| `/commercial` | Carlo Commercial - Follow Us on Instagram | ✅ Set |
+| `/loan-check` (ApplyLoan) | (set) | ✅ Set |
+| `*` (NotFound) | Page Not Found - Carlo | ✅ Set + `noindex` |
 
-### Section Order (top to bottom)
-Japan Import Hero → Loan Calculator → How It Works → Testimonials → Instagram Gallery → FAQ
+Static fallback in `index.html` is also present for social-preview crawlers.
 
-### 1. Create `src/components/JapanImportHero.tsx`
+### Issues found
 
-**Hero block** — Gradient background (matching existing `gradient-hero` style), headline "Import Your Dream Car From Japan", subheading about Carlo's Japan import service. Two CTA buttons:
-- "Calculate Loan" → internal link to `/carloancalculator#calculator` (scrolls to calculator)
-- "WhatsApp Advisor" → `https://wa.me/601126817101` (new tab, green branded)
+1. **Canonical domain mismatch.** `SEO.tsx` and `sitemap.xml` and `robots.txt` all use `https://carlo-com-my.lovable.app`, but the real custom domain is **https://carlo.com.my**. Crawlers will attribute pages to the wrong host and split ranking signals.
+2. **Sitemap is incomplete.** It only lists `/carloancalculator` and `/loan-check`. Missing `/` (Import — homepage) and `/commercial`. Homepage should be priority 1.0.
+3. **Sitemap missing `<lastmod>`** on all entries.
+4. **`robots.txt` verbose but redundant.** Individual `User-agent` blocks for Googlebot/Bingbot/Twitterbot/facebookexternalhit each just say `Allow: /` — same as the wildcard. Can be simplified.
+5. **404 page canonical.** NotFound sends a canonical of the bad path — with `noindex` this is harmless but cleaner to omit.
 
-**"Why Choose Carlo" row** — 4-column grid with icons (from lucide-react): `Gavel` (Direct Auction Access), `BadgeDollarSign` (Transparent Pricing), `Zap` (Fast Loan Approval), `ShieldCheck` (Trusted Import Specialist). Blue/orange themed icon circles.
+### Changes to make
 
-**"Browse Thousands of Cars From Japan" cards** — 3 cards linking (new tab) to:
-- Carsensor.net
-- Goo-Net Exchange
-- JPAUC One Price
+**`src/components/SEO.tsx`**
+- `SITE_URL` → `https://carlo.com.my`
 
-Each card: site name, brief description, external link icon.
-
-**Loan Summary box** — Below cards: "From RM 1,250/month" highlight, summary table (Loan: RM90,000, Interest: RM8,500, Total: RM98,500), "Apply via WhatsApp" button → `https://wa.me/601126817101`.
-
-**Testimonial** — Single quote card: "Very smooth import process..." — Ahmad, Kuala Lumpur.
-
-### 2. Create `src/components/InstagramGallery.tsx`
-
-Section title "Carlo Commercial" with subtitle "Follow Us on Instagram". 3×2 grid of placeholder thumbnails (car/import themed, using gradient placeholders with play/camera overlay icons). Each thumbnail clickable → opens `https://www.instagram.com/carlomalaysia/` in new tab. "Follow Us on Instagram" button below the grid.
-
-### 3. Update `src/pages/Index.tsx`
-
-Add imports for `JapanImportHero` and `InstagramGallery`. Insert them in order:
+**`public/sitemap.xml`** — replace with all 4 indexable routes:
+```xml
+<url><loc>https://carlo.com.my/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://carlo.com.my/carloancalculator</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://carlo.com.my/commercial</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+<url><loc>https://carlo.com.my/loan-check</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 ```
-<JapanImportHero />
-<LoanCalculator />
-<HowItWorks />
-<Testimonials />
-<InstagramGallery />
-<FAQ />
+Add today's `<lastmod>` to each.
+
+**`public/robots.txt`** — simplify:
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://carlo.com.my/sitemap.xml
 ```
 
-### Design
-- Consistent with existing brand: blue (`carlo-blue`), orange (`carlo-orange`), white
-- All external links: `target="_blank" rel="noopener noreferrer"`
-- Fully responsive using existing `container-carlo` and Tailwind grid breakpoints
-- Existing header/footer unchanged
+**`index.html`** — update the static `og:url` reference to point at `https://carlo.com.my/` (currently absent — add `<meta property="og:url">` and `<link rel="canonical" href="https://carlo.com.my/">` for the crawler that only sees static HTML).
 
-### Files Changed
-- **New:** `src/components/JapanImportHero.tsx`
-- **New:** `src/components/InstagramGallery.tsx`
-- **Modified:** `src/pages/Index.tsx` (add 2 imports + 2 components)
+### Not changing
+- Per-page titles/descriptions (all good).
+- The `SEO` component structure (already correct pattern).
+- GTM setup.
 
+### After merge
+Trigger a fresh SEO scan from the SEO & AI search tab to re-verify.
