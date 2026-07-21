@@ -44,8 +44,25 @@ Non-Malaysian applicants will need to contact us for a direct quote.
 ];
 
 const FAQ = () => {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <section className="py-10 md:py-12 bg-muted">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="container-carlo">
         <h2 className="text-xl md:text-2xl font-extrabold text-center text-foreground mb-2">
           FAQ
