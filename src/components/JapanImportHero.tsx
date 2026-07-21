@@ -155,6 +155,8 @@ const JapanImportHero = () => {
 
                 {isVertical && (
                   <button
+                    type="button"
+                    aria-label="Close video player"
                     onClick={(e) => {
                       e.stopPropagation();
                       setIsVertical(false);
@@ -164,7 +166,7 @@ const JapanImportHero = () => {
                     }}
                     className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-foreground/70 text-background flex items-center justify-center hover:bg-foreground/90 transition-colors"
                   >
-                    <X size={16} />
+                    <X size={16} aria-hidden="true" />
                   </button>
                 )}
               </div>
@@ -218,7 +220,7 @@ const JapanImportHero = () => {
                   <div className="w-14 h-14 rounded-lg bg-muted flex items-center justify-center mb-4 border border-border">
                     <img
                       src={card.favicon}
-                      alt={`${card.name} logo`}
+                      alt={`${card.name} Japanese used car auction platform logo`}
                       className="w-9 h-9 object-contain"
                       loading="lazy"
                     />

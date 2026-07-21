@@ -210,9 +210,9 @@ const ApplyLoan = () => {
       case 0:
         return (
           <article>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               Read This, It's Important
-            </h1>
+            </h2>
             <p className="text-center text-muted-foreground mb-8">
               To seamlessly complete your application, we need your time to collect all the required details! Thank you for helping us get your application ready.
             </p>
@@ -295,9 +295,9 @@ const ApplyLoan = () => {
       case 2:
         return (
           <article>
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
               First Things First
-            </h1>
+            </h2>
             <h3 className="text-carlo-orange font-semibold mb-4">What We Need</h3>
             <div className="space-y-5">
               <div>
@@ -659,7 +659,7 @@ const ApplyLoan = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEO
-        title="Car Loan Eligibility Check in Minutes"
+        title="Carlo - Car Loan Eligibility Check in Minutes"
         description="Check what car you can afford in minutes. Answer a few quick questions and Carlo's experts will match you with the right car and finance."
         canonical="/loan-check"
         favicon="/favicon-orange.png"
